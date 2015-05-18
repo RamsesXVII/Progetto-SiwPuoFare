@@ -70,7 +70,18 @@ public class ProductFacade {
 	}
 
 	public Product getProduct(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		this.openEntityManager();
+		EntityTransaction tx= this.em.getTransaction();
+		tx.begin();
+		try{
+			Query query = this.em.createNamedQuery("Products.findProduct");  //se è interrogazione molto rilevante per il dominio  usata spesso
+			query.setParameter("id", new Long(id));
+			return (Product) query.getResultList().get(0);
+		}catch(Exception e){
+			tx.rollback();
+			return null;
+		}finally{
+			tx.commit();
+			this.closeEntityManager();}
 	}
 }
