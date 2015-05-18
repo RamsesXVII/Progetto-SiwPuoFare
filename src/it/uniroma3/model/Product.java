@@ -7,8 +7,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
 	@NamedQuery(name="Products.findAll", query="SELECT c FROM Product c"),
-    @NamedQuery(name="Products.findProduct", query="SELECT c FROM Product c.id=:id")
+    @NamedQuery(name="Products.findProduct", query="SELECT c FROM Product c WHERE c.id=:id")
 })
+
 public class Product {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)

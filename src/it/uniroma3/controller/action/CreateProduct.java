@@ -19,7 +19,7 @@ public class CreateProduct implements Action {
 			String description = request.getParameter("description");
 			
 			ProductFacade facade = new ProductFacade();
-			Product p= new Product( name,  description,  price, code);
+			Product p= new Product(name,description,price,code);
 			facade.createProduct(p);
 			request.setAttribute("product", p);
 			

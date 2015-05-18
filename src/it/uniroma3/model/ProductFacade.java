@@ -12,10 +12,9 @@ public class ProductFacade {
 	
 	public boolean createProduct(Product p){
 		
-
-		this.openEntityManager();
-		EntityTransaction tx=this.em.getTransaction();
 		
+		this.openEntityManager();
+		EntityTransaction tx=this.em.getTransaction();		
 		tx.begin();
 		em.persist(p);
 		tx.commit();
@@ -71,12 +70,15 @@ public class ProductFacade {
 
 	public Product getProduct(Long id) {
 		this.openEntityManager();
+		
 		EntityTransaction tx= this.em.getTransaction();
 		tx.begin();
 		try{
 			Query query = this.em.createNamedQuery("Products.findProduct");  //se è interrogazione molto rilevante per il dominio  usata spesso
-			query.setParameter("id", new Long(id));
+			query.setParameter("id", id);			
+			System.out.println(query.getResultList().size());
 			return (Product) query.getResultList().get(0);
+	
 		}catch(Exception e){
 			tx.rollback();
 			return null;
