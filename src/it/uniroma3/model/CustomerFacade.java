@@ -16,14 +16,15 @@ public class CustomerFacade {
 	public void createCustomer(String firstName, String lastName, String email, String dateOfBirth,
 			String street, String city, String state, String zipcode, String country){
 		
-		Customer c1=new Customer(firstName, lastName, email, dateOfBirth);
-		Address a= new Address(street, city, state, zipcode, country);
-		c1.setAddress(a);
+
 		
 		this.openEntityManager();
 		EntityTransaction tx=this.em.getTransaction();
 		
 		tx.begin();
+		Customer c1=new Customer(firstName, lastName, email, dateOfBirth);
+		Address a= new Address(street, city, state, zipcode, country);
+		c1.setAddress(a);
 		em.persist(c1);
 		tx.commit();
 		
