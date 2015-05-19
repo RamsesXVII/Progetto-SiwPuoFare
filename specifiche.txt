@@ -1,0 +1,102 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720
+
+\f0\fs24 \cf2 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec2 CostaTantoESiRompe \'e8 una piccola azienda che effettua attivit\'e0 di eCommerce dei propri prodotti. \
+Pi\'f9 precisamente, la natura di questa azienda \'e8 la seguente:\
+\
+	\'93CostaTantoESiRompe \'e8 un\'92azienda che da ben 15 anni \'e8 al servizio dei propri clienti, \
+	fornendo prodotti di bassa qualit\'e0 a prezzi sproporzionati. \
+	Non troverete prodotti peggiori a prezzi inferiori nell\'92intero web.\'94\
+	\
+Il sistema software usato da CostaPocoESiRompe per gestire informazioni sugli acquisti, sul catalogo e sugli utenti \
+\'e8 AcmeIncredible. Nel resto di questo documento, AcmeIncredible \'e8 anche chiamato il sistema in discussione.\
+\
+L\'92uso del sistema in discussione \'e8 descritto dai seguenti casi d\'92uso (sono di interesse sia gli scenari principali di successo che le estensioni mostrate) e regole di dominio:\
+\
+Caso d\'92uso UC1: Consultazione del listino dei prodotti - Attore primario: un Utente non registrato\
+Scenario Principale di successo:\
+1. Un Utente non registrato vuole consultare il catalogo dei prodotti e ottenere informazioni \
+   dettagliate su diversi prodotti.\
+2. L\'92Utente sceglie l\'92attivit\'e0 \'93Visualizza Catalogo\'94.\
+3. Il Sistema visualizza tutti i prodotti presenti nel catalogo in ordine alfabetico, mostrandone il nome, \
+   la quantit\'e0 disponibile  e una breve descrizione.\
+4. L\'92Utente seleziona l\'92identificatore di un prodotto del catalogo, per visualizzare la sua descrizione \
+   completa e informazioni pi\'f9 dettagliate.\
+5. Il Sistema mostra i dettagli del prodotto scelto: nome, codice, descrizione, costo, \
+   quantit\'e0 in magazzino e fornitori disponibili.\
+L\'92Utente ripete i passi 4-5 fino a che non indica che ha terminato.\
+\
+Caso d'uso UC2: Effettuazione di un ordine-Attore primario: un Utente Registrato.\
+Scenario Principale di successo:\
+1. Un Utente vuole effettuare un ordine, composto da uno o pi\'f9 prodotti.\
+2. L'Utente inseisce il suo indirizzo di posta elettronica e la sua password. Il Sistema verifica\
+   la correttezza dei dati immessi, e autentica l'Utente. Il sistema mostra nome e cognome dell'Utente,\
+   da ora in avanti chiamato Cliente.\
+3. Il Cliente seleziona l'attivit\'e0 "visualizza catalogo".\
+4. Il Sistema visualizza tutti i prodotti presenti nel catalogo in ordine alfabetico, mostrandone il nome, \
+   la quantit\'e0 disponibile  e una breve descrizione. \
+5. Il Cliente inserisce il nome del prodotto che intende acquistre.\
+6. Il Sistema mostra tutti i prodotti corrispondenti al nome inserito.\
+7. Il Cliente specifica il codice di un prodotto e la quantit\'e0 che intende acquistarne. Il Sistema aggiunge al carrello\
+   del cliente il prodotto specificato e la sua quantit\'e0. L'importo totale dell'ordine viene aggiornato.\
+L\'92Utente ripete i passi 5-7 fino a che non indica che ha terminato.\
+8. Il Sistema mostra un riepilogo dell'ordine, con i prodotti che lo compongono e le relative quantit\'e0.\
+9. Il Cliente conferma la creazione dell'ordine. Il Sistema registra tutte le informazioni sul nuovo ordine, compresa la\
+   data di creazione e un identificatore univoco. Da questo momento in poi, questo otdine potr\'e0 essere visualizzato\
+   dall'Utente che l'ha creato.\
+Esensioni 1-9a L'Utente annulla l'operazione di inserimento. Il sistema non registra nessuna informazione sull'ordine.\
+Regole di dominio:\
+A. Un Cliente pu\'f2 inserire un prodotto nel carrello soltanto se la quantit\'e0 specificata \'e8 minore o uguale a quella \
+   disponibile.\
+\
+Caso d'uso UC3: Consultazione dei propri ordini- Attore primario: un Cliente.\
+1. Un Cliente vuole effettuare consultare i propri ordini.\
+2. L'Cliente inseisce il suo indirizzo di posta elettronica e la sua password. Il Sistema verifica\
+   la correttezza dei dati immessi, e autntica l'Utente. Il Sistema mostra nome e cognome dell'Utente, \
+   da ora in avanti chiamato Cliente.\
+3. Il Cliente seleziona l'attivit\'e0 "visualizza i miei ordini".\
+4. Il Sistema mostra l'elenco degli ordini dell'Utente in ordine di creazione.\
+5. Il Cliente seleziona l'identificatore di un ordine di cui vuol conoscere i dettagli.\
+6. Il Sistema mostra il dettaglio dell'ordine: i prodotti inseriti,le rispettive quantit\'e0,\
+   il totale dell'ordine e il costo di ciascun prodotto.\
+L\'92Utente ripete i passi 4-6 fino a che non indica che ha terminato.\
+\
+Caso d'uso UC4: Inserimento prodotti nel catalogo-Attore primario:un Amministratore del Sistema.\
+1. Un Amministratore vuole inserire un nuovo prodotto.\
+2. L\'92Amministratore inserisce il suo codice identificativo e la sua password. Il Sistema verifica la correttezza dei\
+dati immessi, e autentica l\'92Amministratore. Il Sistema mostra nome e cognome dell\'92Amministratore.\
+3. L\'92Amministratore sceglie l\'92attivit\'e0 "Inserimento nuovo prodotto".\
+4. L\'92Amministratore inserisce il codice del Fornitore che ha realizzato il prodotto che si vuole inserire. Il Sistema\
+   mostra i dati sul fornitore, e l\'92elenco dei prodotti di quel fornitore gi\'e0 registrati nel sistema.(ATTENZIONE:il prodotto pu\'e0 essere realizzato da pi\'f9 fornitori e forse \'e8 il caso di inserire anche immagini di prodotti".\
+5. L\'92Amministratore inserisce il nome del prodotto, una sua descrizione e il suo prezzo unitario. \
+   Il Sistema registra queste informazioni sul prodotto.\
+L\'92Amministratore ripete i passi 4-5 fino a che non indica che ha terminato.\
+Regole di dominio:\
+B. Tutti i prodotti inseriti devono avere almeno un fornitore. Non ci sono prodotti che non hanno fornitori.\
+\
+Caso d'uso UC5: Recupero dati cliente- Attore primario: un Amministratore del Sistema.\
+1. Un Amministratore vuole visualizzare i dati di un cliente.\
+2. L\'92Amministratore inserisce il suo codice identificativo e la sua password. Il Sistema verifica la correttezza dei\
+dati immessi, e autentica l\'92Amministratore. Il Sistema mostra nome e cognome dell\'92Amministratore.\
+3. L'Amministratore inserisce l'id di un ordine.\
+4. Il Sistema mostra nome, cognome, indirizzo del cliente che ha effettuato l'ordine.\
+\
+Caso d'uso UC6: Evasione di un ordine- Attore primario: un Amministratore del Sistema.\
+1. Un Amministratore vuole evadere un ordine.\
+2. L\'92Amministratore inserisce il suo codice identificativo e la sua password. Il Sistema verifica la correttezza dei\
+dati immessi, e autentica l\'92Amministratore. Il Sistema mostra nome e cognome dell\'92Amministratore.\
+3. L\'92Amministratore sceglie l\'92attivit\'e0 "Evasione ordini".\
+4. Il sistema visualizza gli ordini confermati, ma non evasi, in ordine inverso di inserimento.\
+5. L'Amministratore seleziona un ordine dall'elenco, per procedere all'evasione dell'ordine.\
+6. Il Sistema aggiorna lo stato dell'ordine, registrando la data di spedizione e la quantit\'e0 residua dei prodotti in magazzino.\
+L\'92Amministratore ripete i passi 4-6 fino a che non indica che ha terminato.\
+\
+\
+\
+   \
+}
