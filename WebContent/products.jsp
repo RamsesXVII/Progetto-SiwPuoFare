@@ -10,6 +10,9 @@
 </head>
 <body>
 <h1>Products</h1>
+<td>
+${listOrderLines.size()}
+</td>
 <table>
 	<tr>
 		<th>Name</th>
@@ -19,6 +22,7 @@
 		<tr>
 			<td><a href="<c:url value="/controller/product.get?id=${product.id}" />">${product.name}</a></td>
 			<td>${product.price}</td>
+			
 		</tr>
 	</c:forEach>
 </table>
