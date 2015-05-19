@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
-    pageEncoding="US-ASCII"%>
- <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	pageEncoding="US-ASCII"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
 <html>
@@ -9,22 +9,26 @@
 <title>Product</title>
 </head>
 <body>
-<h1>Products</h1>
-<td>
-${listOrderLines.size()}
-</td>
-<table>
-	<tr>
-		<th>Name</th>
-		<th>Price</th>
-	</tr>
-	<c:forEach var="product" items="${products}">
+	<h1>Products</h1>
+
+	<table>
 		<tr>
-			<td><a href="<c:url value="/controller/product.get?id=${product.id}" />">${product.name}</a></td>
-			<td>${product.price}</td>
-			
+			<th>Name</th>
+			<th>Price</th>
 		</tr>
-	</c:forEach>
-</table>
+		<c:forEach var="product" items="${products}">
+			<tr>
+				<td><a
+					href="<c:url value="/controller/product.get?id=${product.id}" />">${product.name}</a></td>
+				<td>${product.price}</td>
+			</tr>
+		</c:forEach>
+	</table>
+	<c:if test="${listOrderLines!=null}">
+		<h3>
+			<a href="<c:url value="/controller/facade.orderLine" />"><input
+				type="submit" name="sumbit" value="concludi" /></a>
+		</h3>
+	</c:if>
 </body>
 </html>

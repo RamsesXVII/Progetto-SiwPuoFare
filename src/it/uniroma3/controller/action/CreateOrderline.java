@@ -11,7 +11,9 @@ public class CreateOrderline implements Action{
 
 	@Override
 	public String perform(HttpServletRequest request) {
-		Long id = Long.parseLong(request.getParameter("id"));
+		HttpSession session = request.getSession();
+		
+		Long id =((Product)session.getAttribute("product")).getId();
 		
 		ProductFacade facade = new ProductFacade();
 		Product product = facade.getProduct(id);	
@@ -20,12 +22,11 @@ public class CreateOrderline implements Action{
 		o.setQuantity((Integer.parseInt(request.getParameter("quantita"))));
 		o.setUnitPrice(product.getPrice());
 		List <OrderLine> orderlines = new LinkedList<OrderLine>();
-		HttpSession session = request.getSession();
+		orderlines.add(o);
 		
 		if(session.getAttribute("listOrderLines")!=null)
 			orderlines.addAll((List<OrderLine>)session.getAttribute("listOrderLines"));
 		
-		orderlines.add(o);
 		session.setAttribute("listOrderLines", orderlines);
 		return "/controller/product.list";
 	}

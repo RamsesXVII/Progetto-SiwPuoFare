@@ -5,6 +5,7 @@ import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 public class GetProduct implements Action {
 
@@ -17,8 +18,8 @@ public class GetProduct implements Action {
 			
 			ProductFacade facade = new ProductFacade();
 			Product product = facade.getProduct(id);
-			request.setAttribute("product", product);
-			
+			HttpSession session = request.getSession();
+			session.setAttribute("product", product);			
 			return "/product.jsp";
 		} else
 			return "/invalid.jsp";

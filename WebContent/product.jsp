@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=US-ASCII"
+    pageEncoding="US-ASCII"%>
+ <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,17 +9,20 @@
 <title>Product</title>
 </head>
 <body>
-<form action="/controller/orderline.create?id=${product.id}" method="get">
+	<form action="<c:url value="/controller/orderline.create" />" method="get">
+		<h1>${product.name}</h1>
+		<h2>Details</h2>
+		<div>Code: ${product.code}</div>
+		<div>Price: ${product.price}</div>
+		<div>Description: ${product.description}</div>
+		<div>
+			Quantita: <input type="text" name="quantita" />
+		</div>
+		<div>
+			<input type="submit" name="sumbit" value="aggiungi" />
+		</div>
+	</form>
 
-<h1>${product.name}</h1>
-<h2>Details  ${product.id}</h2>
-<div>Code: ${product.code}</div>
-<div>Price: ${product.price}</div>
-<div>Description: ${product.description}</div>
-<div>Quantita: <input type="number" name="quantita"/></div>
-<div><input type="submit" name="sumbit" value="aggiungi" /></div>
-</form>
-			
 
 </body>
 </html>
