@@ -13,7 +13,7 @@ public class CustomerFacade {
 		
 	}
 	
-	public void createCustomer(String firstName, String lastName, String email, String dateOfBirth,
+	public void createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
 			String street, String city, String state, String zipcode, String country){
 		
 
@@ -22,7 +22,7 @@ public class CustomerFacade {
 		EntityTransaction tx=this.em.getTransaction();
 		
 		tx.begin();
-		Customer c1=new Customer(firstName, lastName, email, dateOfBirth);
+		Customer c1=new Customer(firstName, lastName, email, password, dateOfBirth);
 		Address a= new Address(street, city, state, zipcode, country);
 		c1.setAddress(a);
 		em.persist(c1);
@@ -42,6 +42,25 @@ public class CustomerFacade {
 		try{
 			Query query = this.em.createNamedQuery("Customer.findAll");
 			return query.getResultList();
+		}catch(Exception e){
+			tx.rollback();
+			return null;
+		}finally{
+			tx.commit();
+			this.closeEntityManager();
+		}
+	}
+	
+public Customer retriveCustomerByEmail(String email){
+		
+		this.openEntityManager();
+		EntityTransaction tx=this.em.getTransaction();
+		tx.begin();
+		
+		try{
+			Query query = this.em.createNamedQuery("Customer.findByEmail");
+			query.setParameter("email", email);
+			return (Customer)query.getResultList().get(0);
 		}catch(Exception e){
 			tx.rollback();
 			return null;

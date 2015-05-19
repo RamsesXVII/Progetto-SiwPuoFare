@@ -12,6 +12,8 @@ import javax.persistence.*;
 	@NamedQuery(name="Customer.findAll", query="SELECT c FROM Customer c"),
     @NamedQuery(name="Customer.findAllCity",
                 query="SELECT c.address.city FROM Customer c"),
+    @NamedQuery(name="Customer.findByEmail",
+                query="SELECT c FROM Customer c WHERE c.email= :email")
 }) 
 public class Customer {
 	@Id
@@ -21,7 +23,10 @@ public class Customer {
 	private String firstName;
 	@Column(nullable=false)
 	private String lastName;
+	@Column
 	private String email;
+	@Column
+	private String password;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE) //solo giorno mese anno
 	private Date dateOfBirth;
@@ -38,12 +43,13 @@ public class Customer {
 		
 	}
 	
-	public Customer(String firstName, String lastName, String email,
+	public Customer(String firstName, String lastName, String email, String password,
 			String dateOfBirthm) {
 		this.registrationDate=new Date();
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.email = email;
+		this.password=password;
 		this.dateOfBirth= this.getBirthDate(dateOfBirthm);
 		setRegistrationDate();
 	}
@@ -110,7 +116,8 @@ public class Customer {
 	        sb.append("{id=").append(id); 
 	        sb.append(", name='").append(firstName); 
 	        sb.append(", lastName=").append(lastName); 
-	        sb.append(", email='").append(email); 
+	        sb.append(", email='").append(email);  
+	        sb.append(", password='").append(password); 
 	        sb.append(", dateofBirth= day'").append(dateOfBirth.toString());
 	        if(registrationDate!=null)
 	        sb.append(", registration='").append(registrationDate.toString());
@@ -140,6 +147,14 @@ public class Customer {
 			date=dateformat3.parse(dateOfBirthh);
 			}catch(ParseException e) {e.printStackTrace();}
 		return date;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }
