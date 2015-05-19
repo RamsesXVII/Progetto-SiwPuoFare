@@ -6,9 +6,8 @@ import javax.servlet.http.HttpSession;
 public class LogoutCustomer implements Action {
 
 	public String perform(HttpServletRequest request) {		
-		/*HttpSession s=request.getSession();
-		s.invalidate();
-		*/
+		HttpSession session = request.getSession();
+		session.invalidate();
 		return "/index.jsp";
 	}
 	private boolean isLogged(HttpServletRequest request){

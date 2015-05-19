@@ -14,7 +14,7 @@
 <li><a href="<c:url value="/controller/product.list" />">List all product</a></li>
 </ul><br>
 <c:if test="${currentCustomer==null}">
-<h3><a href="login.jsp">LOGIN</a></h3>
+<h3><a href="<c:url value="/controller/customer.login" />">LOGIN</a></h3>
 </c:if>
 <c:if test="${currentCustomer!=null}">
 <h3><a href="<c:url value="/controller/customer.logout" />">LOGOUT</a></h3>
