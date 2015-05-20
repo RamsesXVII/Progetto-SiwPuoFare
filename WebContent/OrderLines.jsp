@@ -15,7 +15,7 @@
 			<th>Name</th>
 			<th>Quantità</th>
 			<th>Unit Price</th>
-		</tr>
+		</tr> 
 		<c:forEach var="orderLine" items="${listOrderLines}">
 			<tr>
 				<td>${orderLine.product.name}</td>
