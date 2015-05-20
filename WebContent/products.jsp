@@ -10,7 +10,6 @@
 </head>
 <body>
 	<h1>Products</h1>
-
 	<table>
 		<tr>
 			<th>Name</th>
@@ -26,7 +25,7 @@
 	</table>
 	<c:if test="${listOrderLines!=null}">
 		<h3>
-			<a href="<c:url value="/controller/facade.orderLine" />"><input
+			<a href="<c:url value="/OrderLines.jsp" />"><input
 				type="submit" name="sumbit" value="concludi" /></a>
 		</h3>
 	</c:if>

@@ -104,4 +104,7 @@ public Customer retriveCustomerByEmail(String email){
 		this.emf.close();
 	}
 	
+//	public void addOrder(Order o){
+//		o.getCustomer()
+//	}
 }

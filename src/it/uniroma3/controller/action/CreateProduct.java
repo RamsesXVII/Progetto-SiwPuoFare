@@ -23,7 +23,7 @@ public class CreateProduct implements Action {
 			facade.createProduct(p);
 			request.setAttribute("product", p);
 			
-			return "/product.jsp";
+			return "/controller/product.list";
 		} else
 			return "/newProduct.jsp";
 	}

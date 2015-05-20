@@ -3,6 +3,7 @@ package it.uniroma3.model;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -36,7 +37,7 @@ public class Customer {
 	@OneToOne (cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private Address address;
 //	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
-	@OneToMany(mappedBy="customer")
+	@OneToMany(mappedBy="customer") //,fetch=FetchType.EAGER)
 	private List<Order> orders;
 	
 	public Customer(){
@@ -45,6 +46,7 @@ public class Customer {
 	
 	public Customer(String firstName, String lastName, String email, String password,
 			String dateOfBirthm) {
+		this.orders= new LinkedList<Order>();		
 		this.registrationDate=new Date();
 		this.firstName = firstName;
 		this.lastName = lastName;

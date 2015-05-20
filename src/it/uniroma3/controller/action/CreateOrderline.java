@@ -13,10 +13,10 @@ public class CreateOrderline implements Action{
 	public String perform(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
-		Long id =((Product)session.getAttribute("product")).getId();
+		//Long id =((Product)session.getAttribute("product")).getId();
 		
-		ProductFacade facade = new ProductFacade();
-		Product product = facade.getProduct(id);	
+		//ProductFacade facade = new ProductFacade();
+		Product product = (Product)session.getAttribute("product");	
 		OrderLine o = new OrderLine();
 		o.setProduct(product);
 		o.setQuantity((Integer.parseInt(request.getParameter("quantita"))));
