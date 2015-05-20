@@ -3,12 +3,18 @@ package it.uniroma3.controller.action;
 import it.uniroma3.controller.helper.HelperProduct;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+import it.uniroma3.status.NotLoggedException;
+import it.uniroma3.status.Status;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class CreateProduct implements Action {
 
-	public String perform(HttpServletRequest request) {
+	public String perform(HttpServletRequest request) 
+			throws NotLoggedException{
+		
+		Status s=new Status();
+		s.isLogged(request);
 		
 		HelperProduct helper = new HelperProduct();
 		

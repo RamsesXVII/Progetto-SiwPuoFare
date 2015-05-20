@@ -1,6 +1,9 @@
 package it.uniroma3.model;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.*;
+
+import it.uniroma3.md5.*;
 
 import javax.persistence.*;
 
@@ -14,15 +17,16 @@ public class CustomerFacade {
 	}
 	
 	public void createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
-			String street, String city, String state, String zipcode, String country){
-		
+			String street, String city, String state, String zipcode, String country) 
+					throws NoSuchAlgorithmException{
 
-		
 		this.openEntityManager();
 		EntityTransaction tx=this.em.getTransaction();
 		
+		Md5Generator m=new Md5Generator();
+		
 		tx.begin();
-		Customer c1=new Customer(firstName, lastName, email, password, dateOfBirth);
+		Customer c1=new Customer(firstName, lastName, email, m.md5Of(password), dateOfBirth);
 		Address a= new Address(street, city, state, zipcode, country);
 		c1.setAddress(a);
 		em.persist(c1);

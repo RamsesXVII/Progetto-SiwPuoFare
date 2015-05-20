@@ -10,7 +10,4 @@ public class LogoutCustomer implements Action {
 		session.invalidate();
 		return "/index.jsp";
 	}
-	private boolean isLogged(HttpServletRequest request){
-		return (request.getSession().getAttribute("currentCustomer")!=null);
-	}
 }

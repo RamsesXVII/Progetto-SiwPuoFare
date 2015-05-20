@@ -7,7 +7,7 @@
 <title>home</title>
 </head>
 <body>
-<h1>Not logged!</h1><br>
-<h1><a href="login.jsp">login</a></h1>
+<h1>You are not logged in!</h1><br>
+<h1><a href="/Progetto-SiwPuoFare/login.jsp">login</a></h1>
 </body>
 </html>

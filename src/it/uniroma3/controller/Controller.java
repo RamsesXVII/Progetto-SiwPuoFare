@@ -21,7 +21,7 @@ public class Controller extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		String index="/index.jsp";
-		String google="http://google.com";
+		String notLogged="/notLogged.jsp";
 		String nextPage = null;
 		String actionName = path2action(request);
 		Action action;
@@ -29,7 +29,7 @@ public class Controller extends HttpServlet {
 			action = (Action)Class.forName(actionName).newInstance();
 			nextPage = action.perform(request);
 		} catch (Exception e) {
-			nextPage = index;
+			nextPage = notLogged;
 		} 
 		nextPage = response.encodeURL(nextPage);
 		ServletContext application  = getServletContext();
