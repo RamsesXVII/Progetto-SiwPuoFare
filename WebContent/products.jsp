@@ -23,7 +23,7 @@
 			</tr>
 		</c:forEach>
 	</table>
-	<c:if test="${listOrderLines!=null}">
+	<c:if test="${listOrderLines.size()!=0 && listOrderLines!=null}">
 		<h3>
 			<a href="<c:url value="/OrderLines.jsp" />"><input
 				type="submit" name="sumbit" value="concludi" /></a>

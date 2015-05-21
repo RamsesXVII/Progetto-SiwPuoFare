@@ -13,7 +13,6 @@
 	<br>
 	<h1>
 		<a href="<c:url value="/login.jsp" />">login! </a>
-		
 	</h1>
 </body>
 </html>

@@ -9,7 +9,7 @@
 <title>Product</title>
 </head>
 <body>
-	<form action="<c:url value="/controller/orderline.create" />" method="get">
+	<form action="<c:url value="/controller/orderLine.create" />" method="get">
 		<h1>${product.name}</h1>
 		<h2>Details</h2>
 		<div>Code: ${product.code}</div>

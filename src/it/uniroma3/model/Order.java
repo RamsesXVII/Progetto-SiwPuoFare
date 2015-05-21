@@ -4,8 +4,13 @@ import java.util.*;
 
 import javax.persistence.*;
 
+@NamedQueries({
+	@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id"),
+	@NamedQuery(name= "OrderFromId.findAll", query="SELECT p FROM Order p Where p.id= :id")
+})
 
-@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id")
+
+
 @Entity
 @Table(name="orders")
 public class Order {
@@ -20,9 +25,9 @@ public class Order {
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="order_id")
 	private List<OrderLine> orderLines;
-	
+
 	public Order(){
-		
+
 	}
 
 	public Order(Date creationTime) {
@@ -61,20 +66,20 @@ public class Order {
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
-	
+
 	public void addOrderLine(OrderLine o){
 		this.orderLines.add(o);
 	}
 	@Override
 	public String toString(){
-		   final StringBuilder sb = new StringBuilder();
-	        sb.append("Order"); 
-	        sb.append("{id=").append(id);
-	        if(this.creationTime!=null)
-	        sb.append(", creationTime='").append(this.creationTime); 
-	        sb.append("}\n");
-	        return sb.toString();
+		final StringBuilder sb = new StringBuilder();
+		sb.append("Order"); 
+		sb.append("{id=").append(id);
+		if(this.creationTime!=null)
+			sb.append(", creationTime='").append(this.creationTime); 
+		sb.append("}\n");
+		return sb.toString();
 	}
 
-	
+
 }

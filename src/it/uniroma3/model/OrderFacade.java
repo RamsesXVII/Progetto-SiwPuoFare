@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 
 public class OrderFacade {
 	private EntityManagerFactory emf;
@@ -35,8 +36,38 @@ public class OrderFacade {
 	}
 
 	public List<Order> getOrders(Long customerID) {
-		// TODO Auto-generated method stub
-		return null;
+		this.openEntityManager();
+		EntityTransaction tx=this.em.getTransaction();
+		tx.begin();
+		
+		try{
+			Query query = this.em.createNamedQuery("trovaOrdini");
+			query.setParameter("id", customerID);			
+			return query.getResultList();
+		}catch(Exception e){
+			tx.rollback();
+			return null;
+		}finally{
+			tx.commit();
+			this.closeEntityManager();
+		}
 	}
 
+	public Order getOrder(Long IdOrder) {
+		this.openEntityManager();
+		EntityTransaction tx=this.em.getTransaction();
+		tx.begin();
+		
+		try{
+			Query query = this.em.createNamedQuery("OrderFromId.findAll");
+			query.setParameter("id", IdOrder);			
+			return (Order)query.getResultList().get(0);
+		}catch(Exception e){
+			tx.rollback();
+			return null;
+		}finally{
+			tx.commit();
+			this.closeEntityManager();
+		}
+	}
 }

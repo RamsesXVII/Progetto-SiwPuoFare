@@ -7,7 +7,7 @@ import it.uniroma3.model.*;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-public class CreateOrderline implements Action{
+public class CreateOrderLine implements Action{
 
 	@Override
 	public String perform(HttpServletRequest request) {

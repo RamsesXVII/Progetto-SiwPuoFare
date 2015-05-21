@@ -14,6 +14,11 @@
 				product</a></li>
 		<li><a href="<c:url value="/controller/product.list" />">List
 				all product</a></li>
+		<c:if test="${currentCustomer!=null}">
+		<li>
+			<a href="<c:url value="/controller/ordersCustomer.get" />">Cronologia</a>
+		</li>
+	</c:if>
 	</ul>
 	<br>
 	<c:if test="${currentCustomer==null}">
@@ -28,8 +33,8 @@
 	</c:if>
 	<c:if test="${listOrderLines!=null}">
 		<h3>
-			<a href="<c:url value="/OrderLines.jsp" />"> <input
-				type="submit" name="sumbit" value="concludi acquisto" /></a>
+			<a href="<c:url value="/OrderLines.jsp" />"> <input type="submit"
+				name="sumbit" value="concludi acquisto" /></a>
 		</h3>
 	</c:if>
 </body>

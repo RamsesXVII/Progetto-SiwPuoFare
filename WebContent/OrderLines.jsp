@@ -18,9 +18,12 @@
 		</tr> 
 		<c:forEach var="orderLine" items="${listOrderLines}">
 			<tr>
-				<td>${orderLine.product.name}</td>
+				<td><a href="<c:url value="/controller/orderLine.get?id=${orderLine.product.id}" />">${orderLine.product.name}</a></td>
 				<td>${orderLine.quantity}</td>
 				<td>${orderLine.unitPrice}</td>
+				<td><a href="<c:url value="/controller/orderLine.remove?idOrderLine=${orderLine.product.id}" />"><input
+				type="submit" name="sumbit" value="rimuovi" /></a></td>
+				<td>${orderLine.product.id}</td>
 			</tr>
 		</c:forEach>
 	</table>
