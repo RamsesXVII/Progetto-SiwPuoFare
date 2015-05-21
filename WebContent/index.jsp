@@ -11,7 +11,8 @@
 </h1>
 <ul>
 <li><a href="<c:url value="/newProduct.jsp" />">Insert a new product</a></li>
-<li><a href="<c:url value="/controller/product.list" />">List all product</a></li>
+<li><a href="<c:url value="/controller/product.list" />">List all products</a></li>
+<li><a href="<c:url value="/controller/ordertosent.list" />">List all no sent orders</a></li>
 </ul><br>
 <c:if test="${currentCustomer==null}">
 <h3><a href="<c:url value="/controller/customer.login" />">LOGIN</a></h3>

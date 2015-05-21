@@ -50,4 +50,15 @@ public class OrderLine {
 		this.product = product;
 	}
 	
+	public String toString(){
+		   final StringBuilder sb = new StringBuilder();
+	        sb.append("OrderLine"); 
+	        sb.append("{id=").append(id); 
+	        sb.append(", unit Price='").append(unitPrice); 
+	        sb.append(", quantita='").append(quantity); 
+	        sb.append(", product=").append(product.getName()); 
+	        sb.append(", totale riga='").append((unitPrice*quantity));  
+	        sb.append("}\n");
+	        return sb.toString();
+	}
 }
