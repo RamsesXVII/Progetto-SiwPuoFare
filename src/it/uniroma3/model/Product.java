@@ -19,6 +19,7 @@ public class Product {
 	private String description;
 	private Float price;
 	private String code;
+	private Integer qty;
 	@ManyToMany(mappedBy= "products", cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Provider> providers;
 	
@@ -90,6 +91,14 @@ public class Product {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public Integer getQty() {
+		return qty;
+	}
+
+	public void setQty(Integer qty) {
+		this.qty = qty;
 	}
 
 }

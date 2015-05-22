@@ -70,4 +70,21 @@ public class OrderFacade {
 			this.closeEntityManager();
 		}
 	}
+
+	public List<Order> getOrderToSend() {
+		this.openEntityManager();
+		EntityTransaction tx=this.em.getTransaction();
+		tx.begin();
+		
+		try{
+			Query query = this.em.createNamedQuery("Order.findAll");
+			return query.getResultList();
+		}catch(Exception e){
+			tx.rollback();
+			return null;
+		}finally{
+			tx.commit();
+			this.closeEntityManager();
+		}
+	}
 }

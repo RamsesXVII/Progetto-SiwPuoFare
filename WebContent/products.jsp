@@ -23,10 +23,14 @@
 			</tr>
 		</c:forEach>
 	</table>
+	<c:if test="${isAmministrazione!=null}">
+			<li><a href="<c:url value="/newProduct.jsp" />"><input
+					type="submit" name="sumbit" value="addProduct" /> </a></li>
+	</c:if>
 	<c:if test="${listOrderLines.size()!=0 && listOrderLines!=null}">
 		<h3>
-			<a href="<c:url value="/OrderLines.jsp" />"><input
-				type="submit" name="sumbit" value="concludi" /></a>
+			<a href="<c:url value="/OrderLines.jsp" />"><input type="submit"
+				name="sumbit" value="concludi" /></a>
 		</h3>
 	</c:if>
 </body>

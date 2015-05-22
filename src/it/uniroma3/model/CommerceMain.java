@@ -19,6 +19,7 @@ public class CommerceMain {
 		
 	//	Address o=new Address("eqw","ew","rwqe","rew","wer");
 		Customer c = new Customer("mario", "rossi", "m", "r", "02/04/13");
+		
 		c.setAmministratore(true);
 		em.persist(c);
 		tx.commit();

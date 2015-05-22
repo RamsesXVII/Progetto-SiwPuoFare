@@ -8,11 +8,13 @@
 <title>home</title>
 </head>
 <body>
-	<h1></h1>
 	<ul>
 		<c:if test="${isAmministrazione!=null}">
-				<li><a href="<c:url value="/newProduct.jsp" />">Insert a
-						new product</a></li>
+			<li><a href="<c:url value="/controller/order.list" />">mostra ordini</a> 
+			</li>
+		</c:if>
+		<c:if test="${isAmministrazione!=null}">
+				<li><a href="<c:url value="/newProduct.jsp" />">Insert a new product</a></li>
 		</c:if>
 		<li><a href="<c:url value="/controller/product.list" />">List
 				all product</a></li>

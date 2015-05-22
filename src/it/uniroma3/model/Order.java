@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 @NamedQueries({
 	@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id"),
-	@NamedQuery(name= "OrderFromId.findAll", query="SELECT p FROM Order p Where p.id= :id")
+	@NamedQuery(name= "OrderFromId.findAll", query="SELECT p FROM Order p Where p.id= :id"),
+	@NamedQuery(name= "Order.findAll", query="SELECT p FROM Order p Where p.stato='nonspedito'")
 })
 
 
@@ -25,6 +26,9 @@ public class Order {
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	@JoinColumn(name="order_id")
 	private List<OrderLine> orderLines;
+	private String stato;
+	@Temporal(TemporalType.DATE)
+	private Date dataSpedizione;
 
 	public Order(){
 
@@ -79,6 +83,22 @@ public class Order {
 			sb.append(", creationTime='").append(this.creationTime); 
 		sb.append("}\n");
 		return sb.toString();
+	}
+
+	public String getStato() {
+		return stato;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
+	public Date getDataSpedizione() {
+		return dataSpedizione;
+	}
+
+	public void setDataSpedizione(Date dataSpedizione) {
+		this.dataSpedizione = dataSpedizione;
 	}
 
 
