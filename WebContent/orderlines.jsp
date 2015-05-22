@@ -9,13 +9,22 @@
 <title>OrderLines</title>
 </head>
 <body>
-Dimensione ${orderLines.size()}
+<h1>OrderLines</h1>
+<table>
+	<tr>
+		<th>OrderiD</th>
+		<th>Quantity</th>
+		<th>UnitPrice</th>	
+	</tr>
 <c:forEach var="orderLine" items="${orderLines}">
 		<tr>
-			<td>${orderLine}</td>
+			<td>${orderLine.product.name}</td>
+			<td>${orderLine.quantity}</td>
+			<td>${orderLine.unitPrice}</td>
 		</tr>
 	</c:forEach>
 				<td><a href="<c:url value="/controller/Order.Validate?id=${id}" />">
 			<input type="submit" name="sumbit" value="confermaESpedisci" /></a></td>
+</table>
 </body>
 </html>

@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ValidateOrder implements Action {
 
 	public String perform(HttpServletRequest request) {
-		Long id = Long.parseLong(request.getParameter("id"));
+			Long id = Long.parseLong(request.getParameter("id"));
 	
 			OrderFacade of=new OrderFacade();
 			of.validateOrder(id);

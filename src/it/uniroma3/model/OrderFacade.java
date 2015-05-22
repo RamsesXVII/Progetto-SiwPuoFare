@@ -1,5 +1,6 @@
 package it.uniroma3.model;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -76,8 +77,21 @@ public class OrderFacade {
 		tx.begin();
 		
 		try{
+			
+			Product p;
 			Order o=em.find(Order.class,id);
-			o.complete();
+			o.setShipmentDate(new Date());
+			o.setStato("spedito");
+			for(OrderLine ol:o.getOrderLines()){
+				p=ol.getProduct();
+				Product c=em.find(Product.class, new Long(p.getId()));
+				c.setQuantity(new Integer(9));
+		//		p.getQuantity();
+		//		p.setQuantity(new Integer(21));
+				}
+		//	o.complete();	
+		//	for(OrderLine ol:o.getOrderLines())
+		//		ol.getProduct().se
 			return true;
 		}catch(Exception e){
 			tx.rollback();

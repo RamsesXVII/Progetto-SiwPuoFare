@@ -19,6 +19,7 @@ public class Product {
 	private String description;
 	private Float price;
 	private String code;
+	private Integer quantity;
 	@ManyToMany(mappedBy= "products", cascade={CascadeType.PERSIST,CascadeType.REMOVE})
 	private List<Provider> providers;
 	
@@ -56,6 +57,14 @@ public class Product {
 		return name;
 	}
 
+
+	public Integer getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(Integer quantity) {
+		this.quantity = quantity;
+	}
 
 	public void setName(String name) {
 		this.name = name;

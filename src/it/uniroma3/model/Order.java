@@ -21,6 +21,9 @@ public class Order {
 	private Date creationTime;
 	@Column(nullable=false)
 	private String stato;
+	@Column
+	@Temporal(TemporalType.DATE)
+	private Date shipmentDate;
 	@ManyToOne
 	private Customer customer;
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST,CascadeType.REMOVE})
@@ -93,8 +96,18 @@ public class Order {
 
 	public void complete() {
 		this.stato="spedito";
+		this.shipmentDate= new Date();
 		
 	}
+	
+	public Date getShipmentDate() {
+		return shipmentDate;
+	}
+
+	public void setShipmentDate(Date shipmentDate) {
+		this.shipmentDate = shipmentDate;
+	}
+
 
 	
 }
