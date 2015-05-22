@@ -17,7 +17,7 @@ public class CustomerFacade {
 	}
 	
 	public void createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
-			String street, String city, String state, String zipcode, String country) 
+			String street, String city, String state, String zipcode, String country, Boolean admin) 
 					throws NoSuchAlgorithmException{
 
 		this.openEntityManager();
@@ -27,6 +27,7 @@ public class CustomerFacade {
 		
 		tx.begin();
 		Customer c1=new Customer(firstName, lastName, email, m.md5Of(password), dateOfBirth);
+		c1.setAdmin(admin);
 		Address a= new Address(street, city, state, zipcode, country);
 		c1.setAddress(a);
 		em.persist(c1);

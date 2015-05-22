@@ -26,6 +26,10 @@ public class LoginCustomer implements Action {
 		if(c.getPassword().equals(password)){
 			HttpSession session= request.getSession();
 			session.setAttribute("currentCustomer", c);
+			if(c.getAdmin())
+				session.setAttribute("admin", "yes");
+			else
+				session.setAttribute("admin", "no");
 			return "/index.jsp";
 		}else{
 			throw new NotLoggedException();

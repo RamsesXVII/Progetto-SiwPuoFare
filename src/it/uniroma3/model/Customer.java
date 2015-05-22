@@ -24,6 +24,8 @@ public class Customer {
 	@Column(nullable=false)
 	private String lastName;
 	@Column
+	private Boolean admin;
+	@Column
 	private String email;
 	@Column
 	private String password;
@@ -155,6 +157,14 @@ public class Customer {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 }

@@ -14,7 +14,7 @@ public class CreateProduct implements Action {
 			throws NotLoggedException{
 		
 		Status s=new Status();
-		s.isLogged(request);
+		s.isLogged(request,true);
 		
 		HelperProduct helper = new HelperProduct();
 		

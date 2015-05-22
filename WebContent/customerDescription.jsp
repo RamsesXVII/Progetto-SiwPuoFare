@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="US-ASCII">
-<title>Invalid product</title>
+<title>Customer Description</title>
 </head>
 <body>
-<h1>Invalid Product</h1>
-<div>Invalid Product</div>
+${requestedCustomer}<br><br>
+${requestedAddress}<br><br>
 <a href="<c:url value="/index.jsp" />">Home</a>
+
 </body>
 </html>

@@ -5,8 +5,11 @@ import java.util.*;
 import javax.persistence.*;
 
 
-@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id")
 @Entity
+@NamedQueries({
+	@NamedQuery(name="Orders.findAll", query="SELECT o FROM Order o"),
+    @NamedQuery(name="Orders.findOrder", query="SELECT o FROM Order o WHERE o.id=:id")
+})
 @Table(name="orders")
 public class Order {
 	@Id

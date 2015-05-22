@@ -10,7 +10,10 @@
 <h1>
 </h1>
 <ul>
+<c:if test="${admin=='yes'}">
 <li><a href="<c:url value="/newProduct.jsp" />">Insert a new product</a></li>
+<li><a href="<c:url value="/getCustomerAndAddress.jsp" />">Get customer address</a></li>
+</c:if>
 <li><a href="<c:url value="/controller/product.list" />">List all product</a></li>
 </ul><br>
 <c:if test="${currentCustomer==null}">

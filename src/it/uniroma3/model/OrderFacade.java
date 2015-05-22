@@ -5,40 +5,24 @@ import java.util.List;
 import javax.persistence.*;
 
 
-public class ProductFacade {
+public class OrderFacade {
 	private EntityManagerFactory emf;
 	private EntityManager em;
 
 	
-	public boolean createProduct(Product p){
+	public boolean createOrder(Order o){
 		
 		
 		this.openEntityManager();
 		EntityTransaction tx=this.em.getTransaction();		
 		tx.begin();
-		em.persist(p);
+		em.persist(o);
 		tx.commit();
 	
 		
 		this.closeEntityManager();
 		return true;
 		
-	}
-	
-	public List<Provider> retrieveProviders(Long id){
-		this.openEntityManager();
-		EntityTransaction tx=this.em.getTransaction();
-		tx.begin();
-		try{
-			Query ricercaFornitori = this.em.createNamedQuery("findAllProviders");  
-			ricercaFornitori.setParameter("id", new Long(id));
-			return ricercaFornitori.getResultList();
-		}catch(Exception e){
-			tx.rollback();
-			return null;
-		}finally{
-			tx.commit();
-			this.closeEntityManager();}
 	}
 
 	public void openEntityManager(){
@@ -50,14 +34,14 @@ public class ProductFacade {
 		this.em.close();
 		this.emf.close();
 	}
-	public List<Product> retriveAllProducts(){
+	public List<Product> retriveAllOrders(){
 		
 		this.openEntityManager();
 		EntityTransaction tx=this.em.getTransaction();
 		tx.begin();
 		
 		try{
-			Query query = this.em.createNamedQuery("Products.findAll");
+			Query query = this.em.createNamedQuery("Orders.findAll");
 			return query.getResultList();
 		}catch(Exception e){
 			tx.rollback();
@@ -68,15 +52,15 @@ public class ProductFacade {
 		}
 	}
 
-	public Product getProduct(Long id) {
+	public Order getOrder(Long id) {
 		this.openEntityManager();
 		
 		EntityTransaction tx= this.em.getTransaction();
 		tx.begin();
 		try{
-			Query query = this.em.createNamedQuery("Products.findProduct");  //se è interrogazione molto rilevante per il dominio  usata spesso
+			Query query = this.em.createNamedQuery("Orders.findOrder");  //se è interrogazione molto rilevante per il dominio  usata spesso
 			query.setParameter("id", id);			
-			return (Product) query.getResultList().get(0);
+			return (Order) query.getResultList().get(0);
 	
 		}catch(Exception e){
 			tx.rollback();

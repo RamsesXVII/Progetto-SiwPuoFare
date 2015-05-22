@@ -77,13 +77,10 @@ public class Address {
 	
 	public String toString(){
 		   final StringBuilder sb = new StringBuilder();
-	        sb.append(" Address"); 
-	        sb.append("{id=").append(id); 
-	        sb.append(", street='").append(street); 
-	        sb.append(", city=").append(city); 
-	        sb.append(", state='").append(state); 
-	        sb.append(", zipcode='").append(zipcode);
-	        sb.append("}\n");
+	        sb.append("street = ").append(street); 
+	        sb.append(", city = ").append(city); 
+	        sb.append(", state = ").append(state); 
+	        sb.append(", zipcode = ").append(zipcode);
 	        return sb.toString();
 	}
 }
