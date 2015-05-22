@@ -39,6 +39,8 @@ public class Customer {
 //	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
 	@OneToMany(mappedBy="customer") //,fetch=FetchType.EAGER)
 	private List<Order> orders;
+	@Column
+	private boolean amministratore;
 	
 	public Customer(){
 		
@@ -157,6 +159,14 @@ public class Customer {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public boolean isAmministratore() {
+		return amministratore;
+	}
+
+	public void setAmministratore(boolean amministratore) {
+		this.amministratore = amministratore;
 	}
 
 }

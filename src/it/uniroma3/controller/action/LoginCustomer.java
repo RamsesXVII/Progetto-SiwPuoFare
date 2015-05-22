@@ -23,6 +23,9 @@ public class LoginCustomer implements Action {
 		if(c.getPassword().equals(password)){
 			HttpSession session= request.getSession();
 			session.setAttribute("currentCustomer", c);
+			if(c.isAmministratore()){
+				session.setAttribute("isAmministrazione", c);
+			}
 			return "/index.jsp";
 		}
 		return "/login.jsp";

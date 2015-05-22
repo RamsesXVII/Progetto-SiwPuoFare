@@ -10,15 +10,16 @@
 <body>
 	<h1></h1>
 	<ul>
-		<li><a href="<c:url value="/newProduct.jsp" />">Insert a new
-				product</a></li>
+		<c:if test="${isAmministrazione!=null}">
+				<li><a href="<c:url value="/newProduct.jsp" />">Insert a
+						new product</a></li>
+		</c:if>
 		<li><a href="<c:url value="/controller/product.list" />">List
 				all product</a></li>
 		<c:if test="${currentCustomer!=null}">
-		<li>
-			<a href="<c:url value="/controller/ordersCustomer.get" />">Cronologia</a>
-		</li>
-	</c:if>
+			<li><a href="<c:url value="/controller/ordersCustomer.get" />">Cronologia</a>
+			</li>
+		</c:if>
 	</ul>
 	<br>
 	<c:if test="${currentCustomer==null}">

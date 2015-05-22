@@ -17,8 +17,10 @@ public class CommerceMain {
 		EntityTransaction tx= em.getTransaction();
 		tx.begin();
 		
-		Address o=new Address("eqw","ew","rwqe","rew","wer");
-		em.persist(o);
+	//	Address o=new Address("eqw","ew","rwqe","rew","wer");
+		Customer c = new Customer("mario", "rossi", "m", "r", "02/04/13");
+		c.setAmministratore(true);
+		em.persist(c);
 		tx.commit();
 		em.close();
 		emf.close();
