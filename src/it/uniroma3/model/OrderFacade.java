@@ -8,6 +8,7 @@ import javax.persistence.criteria.CriteriaQuery;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 @Stateless
 public class OrderFacade {
@@ -65,6 +66,19 @@ public class OrderFacade {
 	//	em.merge(o);
 	//	return o;
 		return o;
+	}
+
+	public void createOrder(Map<Product, Integer> carrelloInSessione, Customer c) {
+		Order o=new Order(new Date(), c);
+		OrderLine ol;
+		for(Product p:carrelloInSessione.keySet()){
+			ol=new OrderLine();
+			ol.setProduct(p);
+			ol.setQuantity(carrelloInSessione.get(p));
+			ol.setUnitPrice(p.getPrice());
+			o.getOrderLines().add(ol);
+		}
+		em.persist(o);
 	}
 
 }

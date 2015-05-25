@@ -1,15 +1,24 @@
 package it.uniroma3.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 
+import it.uniroma3.model.Customer;
 import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
+import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
 
 import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 
 @ManagedBean
@@ -23,10 +32,12 @@ public class OrderController {
 	private Order order;
 	private String customerEmail;
 	private List<Order> orders;
+	private Integer quantitaCorrente;
 
 	
 	@EJB
 	private OrderFacade orderFacade;
+	private ProductFacade productFacade;
 	
 	public String createOrder() {
 		this.order = orderFacade.createOrder(customerEmail);
@@ -124,7 +135,57 @@ public class OrderController {
 	public String listOrderLines(){
 		return "orderLines";
 	}
+	public ProductFacade getProductFacade() {
+		return productFacade;
+	}
 
+	public void setProductFacade(ProductFacade productFacade) {
+		this.productFacade = productFacade;
+	}
+	public String carrello() {
+		//this
+		return "carrello";
+	}
+	public String addToOrder(){
+		HttpSession session=getSession();
+		Product p=(Product)session.getAttribute("p1");
+		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
+		if(carrelloInSessione!=null){
+			if(carrelloInSessione.containsKey(p)){
+				carrelloInSessione.put(p, new Integer(this.quantitaCorrente+carrelloInSessione.get(p)));
+			}else{
+				carrelloInSessione.put(p,this.quantitaCorrente);
+			}
+			session.setAttribute("carrello", carrelloInSessione);
+		}else{
+			Map<Product, Integer> carrello=new HashMap<Product, Integer>();
+			carrello.put(p, this.quantitaCorrente);
+			session.setAttribute("carrello", carrello);
+		}
+		return "carrello";
+	}
+	public static HttpSession getSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		return httpSession;
+	}
+
+	public Integer getQuantitaCorrente() {
+		return quantitaCorrente;
+	}
+
+	public void setQuantitaCorrente(Integer quantitaCorrente) {
+		this.quantitaCorrente = quantitaCorrente;
+	}
+	public String confermaOrdine() {
+		HttpSession session=getSession();
+		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
+		Customer c=(Customer)session.getAttribute("utenteCorrente");
+		if(carrelloInSessione==null)return "prodotti";
+		orderFacade.createOrder(carrelloInSessione,c);
+		return "orders";
+	}
 }
 
 

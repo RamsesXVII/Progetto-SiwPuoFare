@@ -8,6 +8,9 @@ import it.uniroma3.model.ProductFacade;
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean
 public class ProductController {
@@ -20,6 +23,7 @@ public class ProductController {
 	private String code;
 	private Product product;
 	private List<Product> products;
+	
 	
 	@EJB
 	private ProductFacade productFacade;
@@ -35,8 +39,16 @@ public class ProductController {
 	}
 
 	public String findProduct() {
+		HttpSession s=getSession();
 		this.product = productFacade.getProduct(id);
+		s.setAttribute("p1", this.product);
 		return "product";
+	}
+	public static HttpSession getSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		return httpSession;
 	}
 	
 	public String findProduct(Long id) {

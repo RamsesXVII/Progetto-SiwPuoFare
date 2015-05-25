@@ -85,6 +85,5 @@ import javax.persistence.Column;
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-	
+	}	
 }
