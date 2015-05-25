@@ -4,10 +4,14 @@ import java.util.*;
 
 import javax.persistence.*;
 
-
-@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id")
 @Entity
 @Table(name="orders")
+@NamedQueries({
+	@NamedQuery(name= "Order.findAll", query="SELECT p FROM Order p"),
+	@NamedQuery(name= "Order.findById", query="SELECT c FROM Order c WHERE c.id=:id"),
+	@NamedQuery(name= "Order.findAllNoSent", query="SELECT p FROM Order p WHERE p.stato='nonSpedito'")
+	})
+
 public class Order {
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -15,6 +19,11 @@ public class Order {
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE)
 	private Date creationTime;
+	@Column(nullable=false)
+	private String stato;
+	@Column(nullable=false)
+	@Temporal(TemporalType.DATE)
+	private Date dataSpedizione;
 	@ManyToOne
 	private Customer customer;
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.PERSIST,CascadeType.REMOVE})
@@ -25,9 +34,12 @@ public class Order {
 		
 	}
 
-	public Order(Date creationTime) {
+	public Order(Date creationTime, Customer c) {
+		this.dataSpedizione=new Date();
 		this.creationTime = creationTime;
 		this.orderLines=new LinkedList<OrderLine>();
+		this.customer=c;
+		this.stato="nonSpedito";
 	}
 
 	public Long getId() {
@@ -46,6 +58,14 @@ public class Order {
 		this.creationTime = creationTime;
 	}
 
+	public String getStato() {
+		return stato;
+	}
+
+	public void setStato(String stato) {
+		this.stato = stato;
+	}
+
 	public Customer getCustomer() {
 		return customer;
 	}
@@ -61,10 +81,7 @@ public class Order {
 	public void setOrderLines(List<OrderLine> orderLines) {
 		this.orderLines = orderLines;
 	}
-	
-	public void addOrderLine(OrderLine o){
-		this.orderLines.add(o);
-	}
+
 	@Override
 	public String toString(){
 		   final StringBuilder sb = new StringBuilder();
@@ -72,9 +89,20 @@ public class Order {
 	        sb.append("{id=").append(id);
 	        if(this.creationTime!=null)
 	        sb.append(", creationTime='").append(this.creationTime); 
+	        sb.append(", customer='").append(customer.getEmail()); 
+	        sb.append(", status='").append(this.stato); 
 	        sb.append("}\n");
 	        return sb.toString();
 	}
+
+	public Date getDataSpedizione() {
+		return dataSpedizione;
+	}
+
+	public void setDataSpedizione(Date dataSpedizione) {
+		this.dataSpedizione = dataSpedizione;
+	}
+
 
 	
 }

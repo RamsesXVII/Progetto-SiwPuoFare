@@ -1,14 +1,16 @@
+<%@ taglib prefix="f"  uri="http://java.sun.com/jsf/core"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
 <title>Product</title>
 </head>
 <body>
-<h1>${product.name}</h1>
+<f:view>
+<h1>${productController.product.name}</h1>
 <h2>Details</h2>
-<div>Code: ${product.code}</div>
-<div>Price: ${product.price}</div>
-<div>Description: ${product.description}</div>
+<div>Code: ${productController.product.code}</div>
+<div>Price: ${productController.product.price}</div>
+<div>Description: ${productController.product.description}</div>
+</f:view>
 </body>
 </html>

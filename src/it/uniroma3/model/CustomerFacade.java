@@ -1,107 +1,111 @@
 package it.uniroma3.model;
 
-import java.util.*;
 
-import javax.persistence.*;
+import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.criteria.CriteriaQuery;
+import java.util.List;
 
-
+@Stateless
 public class CustomerFacade {
-	private EntityManagerFactory emf;
-	private EntityManager em;
 	
-	public CustomerFacade(){
-		
-	}
-	
-	public void createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
+    @PersistenceContext(unitName = "unit-jee-es2")
+    private EntityManager em;
+    
+	public Customer createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
 			String street, String city, String state, String zipcode, String country){
-		
-
-		
-		this.openEntityManager();
-		EntityTransaction tx=this.em.getTransaction();
-		
-		tx.begin();
 		Customer c1=new Customer(firstName, lastName, email, password, dateOfBirth);
 		Address a= new Address(street, city, state, zipcode, country);
 		c1.setAddress(a);
 		em.persist(c1);
-		tx.commit();
-		
-		this.closeEntityManager();
-		
-		
+		return c1;
 	}
 	
-	public List<Customer> retriveAllCustomer(){
-		
-		this.openEntityManager();
-		EntityTransaction tx=this.em.getTransaction();
-		tx.begin();
-		
-		try{
-			Query query = this.em.createNamedQuery("Customer.findAll");
-			return query.getResultList();
-		}catch(Exception e){
-			tx.rollback();
-			return null;
-		}finally{
-			tx.commit();
-			this.closeEntityManager();
-		}
+	public Customer getCustomer(Long id) {
+	    Customer customer= em.find(Customer.class, id);
+		return customer;
 	}
 	
-public Customer retriveCustomerByEmail(String email){
-		
-		this.openEntityManager();
-		EntityTransaction tx=this.em.getTransaction();
-		tx.begin();
-		
-		try{
-			Query query = this.em.createNamedQuery("Customer.findByEmail");
-			query.setParameter("email", email);
-			return (Customer)query.getResultList().get(0);
-		}catch(Exception e){
-			tx.rollback();
-			return null;
-		}finally{
-			tx.commit();
-			this.closeEntityManager();
-		}
+	public List<Customer> getAllCustomer() {
+        CriteriaQuery<Customer> cq = em.getCriteriaBuilder().createQuery(Customer.class);
+        cq.select(cq.from(Customer.class));
+        List<Customer> customers = em.createQuery(cq).getResultList();
+		return customers;
 	}
-	
-	public List<Order> getOrders(Long id){
-		this.openEntityManager();
-		EntityTransaction tx= this.em.getTransaction();
-		tx.begin();
-		try{
-			Query query = this.em.createNamedQuery("trovaOrdini");  //se è interrogazione molto rilevante per il dominio  usata spesso
-			query.setParameter("id", new Long(id));
-			return query.getResultList();
-		}catch(Exception e){
-			tx.rollback();
-			return null;
-		}finally{
-			tx.commit();
-			this.closeEntityManager();}
-		
-//		Customer c=this.em.find(Customer.class, new Long(2601));
-//		tx.commit(); // aggiungere 	@OneToMany(mappedBy="customer",fetch=FetchType.EAGER)
-//		em.close();
-//		emf.close();
-//		return c.getOrders();
 
+	public void updateCustomer(Customer c) {
+        em.merge(c);
 	}
-		
+	
+    private void deleteCustomer(Customer c) {
+        em.remove(c);
+    }
 
-	public void openEntityManager(){
-		this.emf= Persistence.createEntityManagerFactory("commerce-unit");
-		this.em= emf.createEntityManager();
+	public void deleteCustomer(Long id) {
+        Customer c = em.find(Customer.class, id);
+        deleteCustomer(c);
 	}
 	
-	public void closeEntityManager(){
-		this.em.close();
-		this.emf.close();
-	}
 	
+/*
+	
+		
+	    private EntityManager entityManager;
+	    private EntityManagerFactory emf;
+
+		public ProductFacade()  {
+			emf = Persistence.createEntityManagerFactory("product-unit");
+			entityManager = emf.createEntityManager();
+		}
+
+		public Product createProduct(String name, String code, Float price, String description) {
+			Product product = new Product(name, price, description, code);
+			EntityTransaction tx = entityManager.getTransaction();
+			tx.begin();
+			entityManager.persist(product);
+			tx.commit();
+			entityManager.close();
+			emf.close();
+			return product;
+		}
+		
+		public Product getProduct(Long id) {
+		    Product product = entityManager.find(Product.class, id);
+			entityManager.close();
+			emf.close();
+			return product;
+		}
+		
+		public List<Product> getAllProducts() {
+	        CriteriaQuery<Product> cq = entityManager.getCriteriaBuilder().createQuery(Product.class);
+	        cq.select(cq.from(Product.class));
+	        List<Product> products = entityManager.createQuery(cq).getResultList();
+			entityManager.close();
+			emf.close();
+			return products;
+		}
+
+		public void updateProduct(Product product) {
+			EntityTransaction tx = entityManager.getTransaction();
+			tx.begin();
+	        entityManager.merge(product);
+			tx.commit();
+			entityManager.close();
+			emf.close();	}
+		
+	    private void deleteProduct(Product product) {
+	        entityManager.remove(product);
+	    }
+
+		public void deleteProduct(Long id) {
+			EntityTransaction tx = entityManager.getTransaction();
+			tx.begin();
+	        Product product = entityManager.find(Product.class, id);
+	        deleteProduct(product);
+			tx.commit();
+			entityManager.close();
+			emf.close();	
+		}
+*/
 }

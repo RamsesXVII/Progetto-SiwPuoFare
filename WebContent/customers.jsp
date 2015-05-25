@@ -5,22 +5,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Products</title>
+<title>Customer</title>
 </head>
 <body>
 <f:view>
-<h1>Products</h1>
+<h1>Customers</h1>
 <h:form>
 <table>
 	<tr>
-		<th>Name</th><th>Price</th>
+		<th>LastName</th><th>email</th>
 	</tr>
-	<c:forEach var="product" items="#{productController.products}">
+	<c:forEach var="customer" items="#{customerController.customers}">
 		<tr><td>
-		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
-			<f:param name="id" value="#{product.id}" />
+		<h:commandLink action="#{customerController.findCustomer}" value="#{customer.lastName}">
+			<f:param name="id" value="#{customer.id}" />
 		</h:commandLink>
-		</td><td>${product.price}</td></tr>
+		</td><td>${customer.email}</td></tr>
 	</c:forEach>
 </table>
 </h:form>

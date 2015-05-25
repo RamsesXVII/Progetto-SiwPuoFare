@@ -5,26 +5,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>Products</title>
+<title>Orders</title>
 </head>
 <body>
 <f:view>
-<h1>Products</h1>
+<h1>Orders</h1>
 <h:form>
 <table>
 	<tr>
-		<th>Name</th><th>Price</th>
+		<th>Order</th><th>status</th><th>customer</th>
 	</tr>
-	<c:forEach var="product" items="#{productController.products}">
-		<tr><td>
-		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
-			<f:param name="id" value="#{product.id}" />
+  	<c:forEach var="ora" items="#{orderController.orders}">
+  	<tr><td>
+		<h:commandLink action="#{orderController.sendOrder}" value="#{ora.id}">
+			<f:param name="id" value="#{ora.id}" />
 		</h:commandLink>
-		</td><td>${product.price}</td></tr>
+			</td><td>${ora.stato}</td>
+			<td>${ora.customer.email}</td>
+			<td>${ora.dataSpedizione}</td>
+					</tr>
 	</c:forEach>
 </table>
 </h:form>
-
 </f:view>
 </body>
 </html>
