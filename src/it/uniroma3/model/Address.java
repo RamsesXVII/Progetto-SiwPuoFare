@@ -86,4 +86,13 @@ public class Address {
 	        sb.append("}\n");
 	        return sb.toString();
 	}
+	public String description(){
+		   final StringBuilder sb = new StringBuilder();
+	        sb.append("<br>Address: ");
+	        sb.append(" street=").append(street); 
+	        sb.append(" city=").append(city); 
+	        sb.append(" state=").append(state); 
+	        sb.append(" zipcode=").append(zipcode);
+	        return sb.toString();
+	}
 }

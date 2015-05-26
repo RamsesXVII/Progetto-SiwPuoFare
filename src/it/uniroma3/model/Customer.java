@@ -26,6 +26,8 @@ public class Customer {
 	@Column
 	private String email;
 	@Column
+	private Boolean admin;
+	@Column
 	private String password;
 	@Column(nullable=false)
 	@Temporal(TemporalType.DATE) //solo giorno mese anno
@@ -126,6 +128,15 @@ public class Customer {
 	        sb.append("}\n");
 	        return sb.toString();
 	}
+	public String description(){
+		   final StringBuilder sb = new StringBuilder();
+	        sb.append("<br>nome: ").append(firstName); 
+	        sb.append("<br>cognome: ").append(lastName); 
+	        sb.append("<br>email: ").append(email); 
+	        if(address!=null)
+	        sb.append(address.description());
+	        return sb.toString();
+	}
 
 	public Date getRegistrationDate() {
 		return registrationDate;
@@ -155,6 +166,14 @@ public class Customer {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public Boolean getAdmin() {
+		return admin;
+	}
+
+	public void setAdmin(Boolean admin) {
+		this.admin = admin;
 	}
 
 }

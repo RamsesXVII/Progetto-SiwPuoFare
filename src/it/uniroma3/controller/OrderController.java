@@ -11,6 +11,8 @@ import it.uniroma3.model.Order;
 import it.uniroma3.model.OrderFacade;
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+import it.uniroma3.status.NotLoggedException;
+import it.uniroma3.status.Status;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
@@ -23,9 +25,10 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean
 public class OrderController {
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
+	private Long idCorrente;
 	private Date creationTime;
 	private String stato;
 	private Date dataSpedizione;
@@ -34,16 +37,16 @@ public class OrderController {
 	private List<Order> orders;
 	private Integer quantitaCorrente;
 
-	
+
 	@EJB
 	private OrderFacade orderFacade;
 	private ProductFacade productFacade;
-	
+
 	public String createOrder() {
 		this.order = orderFacade.createOrder(customerEmail);
 		return "order"; 
 	}
-	
+
 	public String listOrders() {
 		this.orders = orderFacade.getAllOrders();
 		return "orders"; 
@@ -56,12 +59,12 @@ public class OrderController {
 		this.order = orderFacade.getOrder(id);
 		return "product";
 	}
-	
+
 	public String findOrder(Long id) {
 		this.order = orderFacade.getOrder(id);
 		return "product";
 	}
-	
+
 	public String listOrdersToSend(){
 		this.orders=orderFacade.getOrdersToSend();
 		return "orders";
@@ -150,6 +153,11 @@ public class OrderController {
 		return "carrello";
 	}
 	public String addToOrder(){
+		try{
+			Status.isLogged(false);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		HttpSession session=getSession();
 		Product p=(Product)session.getAttribute("p1");
 		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
@@ -182,21 +190,39 @@ public class OrderController {
 		this.quantitaCorrente = quantitaCorrente;
 	}
 	public String confermaOrdine() {
+		try{
+			Status.isLogged(true);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		HttpSession session=getSession();
 		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
 		Customer c=(Customer)session.getAttribute("utenteCorrente");
 		if(carrelloInSessione==null)return "prodotti";
-		if(c==null){
-			return "notLogged";
-		}
 		orderFacade.createOrder(carrelloInSessione,c);
 		return "orders";
 	}
-	
+
 	public String findOrders(){
 		HttpSession session = getSession();
 		this.orders =this.orderFacade.getOrders(((Customer)session.getAttribute("utenteCorrente")).getId());
 		return "ordersOfCustomer";
+	}
+	public String getCustomerDetails(){
+		Order o=orderFacade.getOrder(this.idCorrente);
+		Customer c=null;
+		try{c=o.getCustomer();}catch(Exception e){c=null;}
+		HttpSession session=getSession();
+		session.setAttribute("searchedCustomer", c);
+		return "customerDetails";
+	}
+
+	public Long getIdCorrente() {
+		return idCorrente;
+	}
+
+	public void setIdCorrente(Long idCorrente) {
+		this.idCorrente = idCorrente;
 	}
 }
 

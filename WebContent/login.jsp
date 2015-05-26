@@ -26,7 +26,7 @@
 			</div>
 			<div>
 				<h:commandButton value="login"
-					action="#{customerController.autentication}" />
+					action="#{customerController.login()}" />
 			</div>
 		</h:form>
 	</f:view>

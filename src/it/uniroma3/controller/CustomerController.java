@@ -41,6 +41,7 @@ public class CustomerController {
 	
 	public String createCustomer(){
 		this.customer=customerFacade.createCustomer(firstName, lastName, email, password, dateOfBirth, street, city, state, zipcode, country);
+		this.customer.setAdmin(false);
 		return "customer";
 	}
 	
@@ -53,7 +54,7 @@ public class CustomerController {
 		this.customer = customerFacade.getCustomer(id);
 		return "customer";
 	}
-	public String autentication() {
+	public String login() {
 		this.customer = customerFacade.getCustomer(email);
 		if(this.customer.getPassword().equals(this.password)){
 			HttpSession session = getSession();

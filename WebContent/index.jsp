@@ -26,7 +26,7 @@
 						<h:commandLink action="#{customerController.listCustomers}"
 							value="List all customers" />
 					</h:form></li>
-
+				<li><a href='<c:url value="/faces/getAddressByOrderId.jsp" />'>Trova customer dato un id</a></li>
 				<li><h:form>
 						<h:commandLink action="#{orderController.listOrdersToSend}"
 							value="List all orders to send" />
@@ -54,6 +54,7 @@
 							value="Logout" />
 					</h:form></li>
 			</c:if>
+			
 		</ul>
 	</f:view>
 </body>
