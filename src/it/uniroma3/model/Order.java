@@ -9,8 +9,9 @@ import javax.persistence.*;
 @NamedQueries({
 	@NamedQuery(name= "Order.findAll", query="SELECT p FROM Order p"),
 	@NamedQuery(name= "Order.findById", query="SELECT c FROM Order c WHERE c.id=:id"),
-	@NamedQuery(name= "Order.findAllNoSent", query="SELECT p FROM Order p WHERE p.stato='nonSpedito'")
-	})
+	@NamedQuery(name= "Order.findAllNoSent", query="SELECT p FROM Order p WHERE p.stato='nonSpedito'"),
+	@NamedQuery(name= "trovaOrdini", query="SELECT p FROM Order p Where p.customer.id= :id"),
+})
 
 public class Order {
 	@Id

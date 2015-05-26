@@ -70,15 +70,26 @@ public class OrderFacade {
 
 	public void createOrder(Map<Product, Integer> carrelloInSessione, Customer c) {
 		Order o=new Order(new Date(), c);
-		OrderLine ol;
+		OrderLine ol=null;
 		for(Product p:carrelloInSessione.keySet()){
 			ol=new OrderLine();
 			ol.setProduct(p);
 			ol.setQuantity(carrelloInSessione.get(p));
 			ol.setUnitPrice(p.getPrice());
 			o.getOrderLines().add(ol);
+			Product a=em.find(Product.class, p.getId());
+			a.setQty(a.getQty()-ol.getQuantity());
+			
 		}
 		em.persist(o);
 	}
+
+	
+	public List<Order> getOrders(Long id){
+		Query query = this.em.createNamedQuery("trovaOrdini");  //se è interrogazione molto rilevante per il dominio  usata spesso
+		query.setParameter("id", new Long(id));
+		return query.getResultList();
+	}
+
 
 }

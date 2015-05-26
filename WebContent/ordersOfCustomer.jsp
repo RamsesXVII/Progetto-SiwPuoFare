@@ -14,7 +14,6 @@
 			<table>
 				<tr>
 					<th>Order</th>
-					<th>status</th>
 					<th>customer</th>
 				</tr>
 				<c:forEach var="ora" items="#{orderController.orders}">
@@ -23,7 +22,6 @@
 								value="#{ora.id}">
 								<f:param name="id" value="#{ora.id}" />
 							</h:commandLink></td>
-						<td>${ora.stato}</td>
 						<td>${ora.customer.email}</td>
 						<td>${ora.dataSpedizione}</td>
 					</tr>

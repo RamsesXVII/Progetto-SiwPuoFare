@@ -3,16 +3,19 @@ package it.uniroma3.model;
 
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+
 import java.util.List;
 
 @Stateless
 public class CustomerFacade {
-	
-    @PersistenceContext(unitName = "unit-jee-es2")
-    private EntityManager em;
-    
+
+	@PersistenceContext(unitName = "unit-jee-es2")
+	private EntityManager em;
+
 	public Customer createCustomer(String firstName, String lastName, String email, String password, String dateOfBirth,
 			String street, String city, String state, String zipcode, String country){
 		Customer c1=new Customer(firstName, lastName, email, password, dateOfBirth);
@@ -21,36 +24,43 @@ public class CustomerFacade {
 		em.persist(c1);
 		return c1;
 	}
-	
+
 	public Customer getCustomer(Long id) {
-	    Customer customer= em.find(Customer.class, id);
+		Customer customer= em.find(Customer.class, id);
 		return customer;
 	}
-	
+
+	public Customer getCustomer(String email) {
+		Query query = this.em.createNamedQuery("Customer.findByEmail");
+		query.setParameter("email", email);
+		return (Customer)query.getResultList().get(0);
+	}
+
+
 	public List<Customer> getAllCustomer() {
-        CriteriaQuery<Customer> cq = em.getCriteriaBuilder().createQuery(Customer.class);
-        cq.select(cq.from(Customer.class));
-        List<Customer> customers = em.createQuery(cq).getResultList();
+		CriteriaQuery<Customer> cq = em.getCriteriaBuilder().createQuery(Customer.class);
+		cq.select(cq.from(Customer.class));
+		List<Customer> customers = em.createQuery(cq).getResultList();
 		return customers;
 	}
 
 	public void updateCustomer(Customer c) {
-        em.merge(c);
+		em.merge(c);
 	}
-	
-    private void deleteCustomer(Customer c) {
-        em.remove(c);
-    }
+
+	private void deleteCustomer(Customer c) {
+		em.remove(c);
+	}
 
 	public void deleteCustomer(Long id) {
-        Customer c = em.find(Customer.class, id);
-        deleteCustomer(c);
+		Customer c = em.find(Customer.class, id);
+		deleteCustomer(c);
 	}
-	
-	
-/*
-	
-		
+
+
+	/*
+
+
 	    private EntityManager entityManager;
 	    private EntityManagerFactory emf;
 
@@ -69,14 +79,14 @@ public class CustomerFacade {
 			emf.close();
 			return product;
 		}
-		
+
 		public Product getProduct(Long id) {
 		    Product product = entityManager.find(Product.class, id);
 			entityManager.close();
 			emf.close();
 			return product;
 		}
-		
+
 		public List<Product> getAllProducts() {
 	        CriteriaQuery<Product> cq = entityManager.getCriteriaBuilder().createQuery(Product.class);
 	        cq.select(cq.from(Product.class));
@@ -93,7 +103,7 @@ public class CustomerFacade {
 			tx.commit();
 			entityManager.close();
 			emf.close();	}
-		
+
 	    private void deleteProduct(Product product) {
 	        entityManager.remove(product);
 	    }
@@ -107,5 +117,5 @@ public class CustomerFacade {
 			entityManager.close();
 			emf.close();	
 		}
-*/
+	 */
 }

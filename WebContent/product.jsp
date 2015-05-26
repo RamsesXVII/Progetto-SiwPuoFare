@@ -12,6 +12,8 @@
 	<div>Code: ${productController.product.code}</div>
 	<div>Price: ${productController.product.price}</div>
 	<div>Description: ${productController.product.description}</div>
+		<div>Description: ${productController.product.qty}</div>
+
 	<f:view>
 		<h:form>
 			<h:inputText value="#{orderController.quantitaCorrente}"/>

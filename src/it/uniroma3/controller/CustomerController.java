@@ -6,11 +6,14 @@ import java.util.List;
 import it.uniroma3.model.Address;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
-
+import it.uniroma3.model.Order;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
+import javax.faces.context.FacesContext;
+import javax.persistence.Query;
+import javax.servlet.http.*;
 
 
 @ManagedBean
@@ -49,6 +52,29 @@ public class CustomerController {
 	public String findCustomer() {
 		this.customer = customerFacade.getCustomer(id);
 		return "customer";
+	}
+	public String autentication() {
+		this.customer = customerFacade.getCustomer(email);
+		if(this.customer.getPassword().equals(this.password)){
+			HttpSession session = getSession();
+			session.setAttribute("utenteCorrente", this.customer);
+			return "index";
+		}
+		return "notLogged";
+	}
+	
+	public String logout(){
+		HttpSession session = getSession();
+		session.invalidate();
+		return "index";
+
+	}
+	
+	public static HttpSession getSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		return httpSession;
 	}
 	
 	public String findCustomer(Long id) {

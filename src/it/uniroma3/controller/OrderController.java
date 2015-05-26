@@ -48,7 +48,10 @@ public class OrderController {
 		this.orders = orderFacade.getAllOrders();
 		return "orders"; 
 	}
-
+	public String listAllOrders() {
+		this.orders = orderFacade.getAllOrders();
+		return "orders"; 
+	}
 	public String findOrder() {
 		this.order = orderFacade.getOrder(id);
 		return "product";
@@ -183,8 +186,17 @@ public class OrderController {
 		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
 		Customer c=(Customer)session.getAttribute("utenteCorrente");
 		if(carrelloInSessione==null)return "prodotti";
+		if(c==null){
+			return "notLogged";
+		}
 		orderFacade.createOrder(carrelloInSessione,c);
 		return "orders";
+	}
+	
+	public String findOrders(){
+		HttpSession session = getSession();
+		this.orders =this.orderFacade.getOrders(((Customer)session.getAttribute("utenteCorrente")).getId());
+		return "ordersOfCustomer";
 	}
 }
 

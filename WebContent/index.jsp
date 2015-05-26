@@ -13,28 +13,47 @@
 	<f:view>
 		<h1>SIW-JEE-ES2</h1>
 		<ul>
-			<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Iinsert
-					a new customer</a></li>
-			<li><a href='<c:url value="/faces/newProduct.jsp" />'>Insert
-					a new product</a></li>
-			<li><a href='<c:url value="/faces/newOrder.jsp" />'>Insert a
-					new order</a></li>
+				<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Registrazione</a></li>
+
+				<li><a href='<c:url value="/faces/newProduct.jsp" />'>Insert
+						a new product</a></li>
 			<li><h:form>
 					<h:commandLink action="#{productController.listProducts}"
 						value="List all Products" />
 				</h:form></li>
-			<li><h:form>
-					<h:commandLink action="#{customerController.listCustomers}"
-						value="List all customers" />
-				</h:form></li>
-			<li><h:form>
-					<h:commandLink action="#{orderController.listOrdersToSend}"
-						value="List all orders to send" />
-				</h:form></li>
-			<li><h:form>
-					<h:commandLink action="#{orderController.listOrders}"
-						value="List all orders" />
-				</h:form></li>
+
+				<li><h:form>
+						<h:commandLink action="#{customerController.listCustomers}"
+							value="List all customers" />
+					</h:form></li>
+
+				<li><h:form>
+						<h:commandLink action="#{orderController.listOrdersToSend}"
+							value="List all orders to send" />
+					</h:form></li>
+				<li><h:form>
+						<h:commandLink action="#{orderController.findOrders}"
+							value="cronologia" />
+					</h:form></li>
+				<li><h:form>
+						<h:commandLink action="#{orderController.findOrders}"
+							value="cronologia" />
+					</h:form></li>
+				<li><h:form>
+						<h:commandLink action="#{orderController.listAllOrders}"
+							value="list all orders" />
+					</h:form></li>
+			<c:if test="${utenteCorrente==null}">
+				<li><h:form>
+						<h:commandLink action="/faces/login.jsp" value="Login" />
+					</h:form></li>
+			</c:if>
+			<c:if test="${utenteCorrente!=null}">
+				<li><h:form>
+						<h:commandLink action="#{customerController.logout}"
+							value="Logout" />
+					</h:form></li>
+			</c:if>
 		</ul>
 	</f:view>
 </body>

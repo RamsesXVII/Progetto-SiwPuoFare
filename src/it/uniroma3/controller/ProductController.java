@@ -1,5 +1,6 @@
 package it.uniroma3.controller;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import it.uniroma3.model.Product;
@@ -22,7 +23,7 @@ public class ProductController {
 	private String description;
 	private String code;
 	private Product product;
-	private List<Product> products;
+	private List<Product> products=new LinkedList<Product>();
 	
 	
 	@EJB
@@ -30,6 +31,8 @@ public class ProductController {
 	
 	public String createProduct() {
 		this.product = productFacade.createProduct(name, code, price, description);
+		products.add(this.product);               //
+		getSession().setAttribute("p1", this.product); //
 		return "product"; 
 	}
 	

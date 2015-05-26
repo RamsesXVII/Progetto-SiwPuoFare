@@ -20,7 +20,8 @@
 		<h:commandLink action="#{productController.findProduct}" value="#{product.name}">
 			<f:param name="id" value="#{product.id}" />
 		</h:commandLink>
-		</td><td>${product.price}</td></tr>
+		</td><td>${product.price}</td>
+		<td>${product.qty}</td></tr>
 	</c:forEach>
 </table>
 </h:form>

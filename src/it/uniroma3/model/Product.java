@@ -26,6 +26,8 @@ import javax.persistence.Column;
 	@Column(nullable = false)
 	private String code;
 	
+	private Long qty;
+	
 	public Product() {
     }
 
@@ -34,7 +36,8 @@ import javax.persistence.Column;
         this.price = price;
         this.description = description;
         this.code = code;
-}
+       this.qty=new Long(100);
+	}
 
     //          Getters & Setters        
     
@@ -85,5 +88,14 @@ import javax.persistence.Column;
 
 	public void setId(Long id) {
 		this.id = id;
-	}	
-}
+	}
+
+	public Long getQty() {
+		return qty;
+	}
+
+	public void setQty(Long qty) {
+		this.qty = qty;
+	}
+
+	}
