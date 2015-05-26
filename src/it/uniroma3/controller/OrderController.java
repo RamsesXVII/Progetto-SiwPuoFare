@@ -134,9 +134,15 @@ public class OrderController {
 		this.orderFacade = orderFacade;
 	}
 
+	public String listOrder(){
+		this.order=orderFacade.getOrder(id);
+		return "order";
+	}
+	
 	public String sendOrder(){
 		this.order= orderFacade.sendOrder(id);
-		return "order";
+		this.orders = orderFacade.getAllOrders();
+		return "orders";
 	}
 	public String listOrderLines(){
 		return "orderLines";
@@ -201,10 +207,11 @@ public class OrderController {
 		if(carrelloInSessione==null)
 			return "prodotti";
 		orderFacade.createOrder(carrelloInSessione,c);
-		return "orders";
+		this.orders=orderFacade.getOrders(c.getId()); //TODO è necessario farlo x cambiare pagina??'
+		return "orders";								//ggestire i login nei metodi leggengp i casi d'uso
 	}
 
-	public String findCustomerOrders(){
+	public String listCustomerOrders(){
 		HttpSession session = getSession();
 		this.orders =this.orderFacade.getOrders(((Customer)session.getAttribute("utenteCorrente")).getId());
 		return "orders";

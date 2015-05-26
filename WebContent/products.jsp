@@ -25,7 +25,6 @@
 	</c:forEach>
 </table>
 </h:form>
-
 </f:view>
 </body>
 </html>

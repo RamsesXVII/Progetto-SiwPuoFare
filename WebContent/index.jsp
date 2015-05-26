@@ -33,12 +33,12 @@
 							value="List all orders to send" />
 					</h:form></li>
 				<li><h:form>
-						<h:commandLink action="#{orderController.findCustomerOrders}"
-							value="list my orders" />
+						<h:commandLink action="#{orderController.listCustomerOrders}"
+							value="List my orders" />
 					</h:form></li>
 				<li><h:form>
 						<h:commandLink action="#{orderController.listAllOrders}"
-							value="list all orders" />
+							value="List all orders" />
 					</h:form></li>
 			<c:if test="${utenteCorrente==null}">
 				<li><h:form>

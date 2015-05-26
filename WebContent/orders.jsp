@@ -16,16 +16,17 @@
 					<th>Order</th>
 					<th>status</th>
 					<th>customer</th>
+					<th>dataCreazione</th>
 				</tr>
 				<c:forEach var="ora" items="#{orderController.orders}">
-					<tr>
-						<td><h:commandLink action="#{orderController.sendOrder}"
-								value="#{ora.id}">
-								<f:param name="id" value="#{ora.id}" />
-							</h:commandLink></td>
+					<tr><td>
+						<h:commandLink action="#{orderController.listOrder}"
+							value="#{ora.id}">
+							<f:param name="id" value="#{ora.id}" />
+						</h:commandLink>
 						<td>${ora.stato}</td>
 						<td>${ora.customer.email}</td>
-						<td>${ora.dataSpedizione}</td>
+						<td>${ora.creationTime}</td>
 					</tr>
 				</c:forEach>
 			</table>
