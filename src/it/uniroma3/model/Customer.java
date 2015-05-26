@@ -54,6 +54,8 @@ public class Customer {
 		this.password=password;
 		this.dateOfBirth= this.getBirthDate(dateOfBirthm);
 		setRegistrationDate();
+		this.admin=new Boolean(false);
+
 	}
 
 
@@ -120,6 +122,7 @@ public class Customer {
 	        sb.append(", lastName=").append(lastName); 
 	        sb.append(", email='").append(email);  
 	        sb.append(", password='").append(password); 
+	        sb.append(", admin='").append(admin); 
 	        sb.append(", dateofBirth= day'").append(dateOfBirth.toString());
 	        if(registrationDate!=null)
 	        sb.append(", registration='").append(registrationDate.toString());

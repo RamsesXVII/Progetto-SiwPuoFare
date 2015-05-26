@@ -41,7 +41,6 @@ public class CustomerController {
 	
 	public String createCustomer(){
 		this.customer=customerFacade.createCustomer(firstName, lastName, email, password, dateOfBirth, street, city, state, zipcode, country);
-		this.customer.setAdmin(false);
 		return "customer";
 	}
 	

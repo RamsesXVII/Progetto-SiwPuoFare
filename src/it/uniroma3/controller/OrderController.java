@@ -191,14 +191,15 @@ public class OrderController {
 	}
 	public String confermaOrdine() {
 		try{
-			Status.isLogged(true);
+			Status.isLogged(false);
 		}catch(NotLoggedException e){
 			return "notLogged";
 		}
 		HttpSession session=getSession();
 		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
 		Customer c=(Customer)session.getAttribute("utenteCorrente");
-		if(carrelloInSessione==null)return "prodotti";
+		if(carrelloInSessione==null)
+			return "prodotti";
 		orderFacade.createOrder(carrelloInSessione,c);
 		return "orders";
 	}

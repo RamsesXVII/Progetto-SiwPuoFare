@@ -12,6 +12,7 @@
 <body>
 	<f:view>
 		<h1>SIW-JEE-ES2</h1>
+		Customer: ${utenteCorrente}
 		<ul>
 				<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Registrazione</a></li>
 
