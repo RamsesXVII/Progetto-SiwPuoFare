@@ -204,10 +204,10 @@ public class OrderController {
 		return "orders";
 	}
 
-	public String findOrders(){
+	public String findCustomerOrders(){
 		HttpSession session = getSession();
 		this.orders =this.orderFacade.getOrders(((Customer)session.getAttribute("utenteCorrente")).getId());
-		return "ordersOfCustomer";
+		return "orders";
 	}
 	public String getCustomerDetails(){
 		Order o=orderFacade.getOrder(this.idCorrente);

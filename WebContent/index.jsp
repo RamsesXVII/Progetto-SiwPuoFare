@@ -33,12 +33,8 @@
 							value="List all orders to send" />
 					</h:form></li>
 				<li><h:form>
-						<h:commandLink action="#{orderController.findOrders}"
-							value="cronologia" />
-					</h:form></li>
-				<li><h:form>
-						<h:commandLink action="#{orderController.findOrders}"
-							value="cronologia" />
+						<h:commandLink action="#{orderController.findCustomerOrders}"
+							value="list my orders" />
 					</h:form></li>
 				<li><h:form>
 						<h:commandLink action="#{orderController.listAllOrders}"
