@@ -22,8 +22,7 @@
 					<th>product</th>
 					<th>price</th>
 				</tr>
-				<c:forEach var="orderLine"
-					items="#{orderController.order.orderLines}">
+				<c:forEach var="orderLine" items="#{orderController.order.orderLines}">
 					<tr>
 						<td>${orderLine.id}</td>
 
@@ -35,6 +34,7 @@
 					</tr>
 				</c:forEach>
 			</table>
+			<!-- ci va un if per far sparire Spedisci -->
 			<td><h:commandLink action="#{orderController.sendOrder}"
 					value="Spedisci">
 					<f:param name="id" value="#{orderController.order.id}" />

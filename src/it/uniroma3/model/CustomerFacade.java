@@ -33,7 +33,11 @@ public class CustomerFacade {
 	public Customer getCustomer(String email) {
 		Query query = this.em.createNamedQuery("Customer.findByEmail");
 		query.setParameter("email", email);
-		return (Customer)query.getResultList().get(0);
+		List<Customer> listCustomers = query.getResultList();
+		if(listCustomers.size()!=0){
+			return listCustomers.get(0);
+		}
+		return null;
 	}
 
 

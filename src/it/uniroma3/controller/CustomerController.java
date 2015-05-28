@@ -55,11 +55,15 @@ public class CustomerController {
 	}
 	public String login() {
 		this.customer = customerFacade.getCustomer(email);
-		if(this.customer.getPassword().equals(this.password)){
-			HttpSession session = getSession();
-			session.setAttribute("utenteCorrente", this.customer);
-			return "index";
-		}
+		if(this.customer!=null)
+			if(this.customer.getPassword().equals(this.password)){
+				HttpSession session = getSession();
+				session.setAttribute("utenteCorrente", this.customer);
+				if(session.getAttribute("carrello")!=null){
+					return "carrello";
+				}
+				return "index";
+			}
 		return "notLogged";
 	}
 	

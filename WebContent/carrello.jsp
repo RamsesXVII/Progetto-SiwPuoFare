@@ -10,7 +10,7 @@
 </head>
 <body>
 	<c:forEach var="p" items="${carrello.keySet()}">
-		${p.name}, ${carrello.get(p)} 
+		${p.name}, ${carrello.get(p)}
 		<br>
 	</c:forEach>
 	<br>

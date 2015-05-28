@@ -31,8 +31,7 @@ public class ProductController {
 	
 	public String createProduct() {
 		this.product = productFacade.createProduct(name, code, price, description);
-		products.add(this.product);               //
-		getSession().setAttribute("p1", this.product); //
+		getSession().setAttribute("p1", this.product); 
 		return "product"; 
 	}
 	

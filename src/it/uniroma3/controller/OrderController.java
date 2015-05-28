@@ -155,39 +155,14 @@ public class OrderController {
 		this.productFacade = productFacade;
 	}
 	public String carrello() {
-		//this
 		return "carrello";
 	}
+	
 	public String addToOrder(){
-		try{
-			Status.isLogged(false);
-		}catch(NotLoggedException e){
-			return "notLogged";
-		}
-		HttpSession session=getSession();
-		Product p=(Product)session.getAttribute("p1");
-		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
-		if(carrelloInSessione!=null){
-			if(carrelloInSessione.containsKey(p)){
-				carrelloInSessione.put(p, new Integer(this.quantitaCorrente+carrelloInSessione.get(p)));
-			}else{
-				carrelloInSessione.put(p,this.quantitaCorrente);
-			}
-			session.setAttribute("carrello", carrelloInSessione);
-		}else{
-			Map<Product, Integer> carrello=new HashMap<Product, Integer>();
-			carrello.put(p, this.quantitaCorrente);
-			session.setAttribute("carrello", carrello);
-		}
-		return "carrello";
+		OrderControllerAction o = new OrderControllerAction();
+		return o.addToOrder(quantitaCorrente);
 	}
-	public static HttpSession getSession(){
-		FacesContext context = FacesContext.getCurrentInstance();
-		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
-		HttpSession httpSession = request.getSession(false);
-		return httpSession;
-	}
-
+	
 	public Integer getQuantitaCorrente() {
 		return quantitaCorrente;
 	}
@@ -196,33 +171,17 @@ public class OrderController {
 		this.quantitaCorrente = quantitaCorrente;
 	}
 	public String confermaOrdine() {
-		try{
-			Status.isLogged(false);
-		}catch(NotLoggedException e){
-			return "notLogged";
-		}
-		HttpSession session=getSession();
-		Map<Product, Integer> carrelloInSessione=(Map<Product, Integer>)session.getAttribute("carrello");
-		Customer c=(Customer)session.getAttribute("utenteCorrente");
-		if(carrelloInSessione==null)
-			return "prodotti";
-		orderFacade.createOrder(carrelloInSessione,c);
-		this.orders=orderFacade.getOrders(c.getId()); //TODO è necessario farlo x cambiare pagina??'
-		return "orders";								//ggestire i login nei metodi leggengp i casi d'uso
+		OrderControllerAction o = new OrderControllerAction();
+		return o.confermaOrdine(this);
 	}
 
 	public String listCustomerOrders(){
-		HttpSession session = getSession();
-		this.orders =this.orderFacade.getOrders(((Customer)session.getAttribute("utenteCorrente")).getId());
-		return "orders";
+		OrderControllerAction o = new OrderControllerAction();
+		return o.listCustomerOrders(this);
 	}
 	public String getCustomerDetails(){
-		Order o=orderFacade.getOrder(this.idCorrente);
-		Customer c=null;
-		try{c=o.getCustomer();}catch(Exception e){c=null;}
-		HttpSession session=getSession();
-		session.setAttribute("searchedCustomer", c);
-		return "customerDetails";
+		OrderControllerAction o = new OrderControllerAction();
+		return o.getCustomerDetails(this);
 	}
 
 	public Long getIdCorrente() {
