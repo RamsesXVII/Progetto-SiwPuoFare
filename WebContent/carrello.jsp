@@ -6,7 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Carrello</title>
+<title>Cart</title>
 </head>
 <body>
 	<c:forEach var="p" items="${carrello.keySet()}">
@@ -16,9 +16,9 @@
 	<br>
 	<f:view>
 		<h:form>
-			<h:commandLink action="#{productController.listProducts}" value="aggiungi nuovo prodotto" />
+			<h:commandLink action="#{productController.listProducts}" value="add new product" />
 			<br>
-			<h:commandLink action="#{orderController.confermaOrdine}" value="concludi aquisto" />
+			<h:commandLink action="#{orderController.confermaOrdine}" value="end sale" />
 		</h:form>
 	</f:view>
 </body>

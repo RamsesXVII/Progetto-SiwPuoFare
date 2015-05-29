@@ -14,9 +14,9 @@
 			<table>
 				<tr>
 					<th>Order</th>
-					<th>status</th>
-					<th>customer</th>
-					<th>dataCreazione</th>
+					<th>Status</th>
+					<th>Customer</th>
+					<th>Creation Date</th>
 				</tr>
 				<c:forEach var="ora" items="#{orderController.orders}">
 					<tr><td>

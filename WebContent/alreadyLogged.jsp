@@ -7,12 +7,12 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>You aren't logged</title>
+<title>You are already logged</title>
 </head>
 <body>
-	<h1>You aren't logged</h1>
+	<h1>You are already logged</h1>
 	<ul>
-		<li><a href='<c:url value="/faces/login.jsp" />'>Sign in</a></li>
+		<li><a href='<c:url value="/faces/index.jsp" />'>Home</a></li>
 	</ul>
 </body>
 </html>

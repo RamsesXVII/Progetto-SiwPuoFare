@@ -7,6 +7,8 @@ import it.uniroma3.model.Address;
 import it.uniroma3.model.Customer;
 import it.uniroma3.model.CustomerFacade;
 import it.uniroma3.model.Order;
+import it.uniroma3.status.NotLoggedException;
+import it.uniroma3.status.Status;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -18,7 +20,7 @@ import javax.servlet.http.*;
 
 @ManagedBean
 public class CustomerController {
-	
+
 	@ManagedProperty(value="#{param.id}")
 	private Long id;
 	private String firstName;
@@ -35,52 +37,71 @@ public class CustomerController {
 	private String state;
 	private String zipcode;
 	private String country;
-	
+
 	@EJB
 	private CustomerFacade customerFacade;
-	
+
 	public String createCustomer(){
 		this.customer=customerFacade.createCustomer(firstName, lastName, email, password, dateOfBirth, street, city, state, zipcode, country);
 		return "customer";
 	}
-	
+
 	public String listCustomers() {
 		this.customers = customerFacade.getAllCustomer();
 		return "customers"; 
 	}
 
 	public String findCustomer() {
+		try{
+			Status.isLogged(true);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		this.customer = customerFacade.getCustomer(id);
 		return "customer";
 	}
+
 	public String login() {
-		this.customer = customerFacade.getCustomer(email);
-		if(this.customer!=null)
-			if(this.customer.getPassword().equals(this.password)){
-				HttpSession session = getSession();
-				session.setAttribute("utenteCorrente", this.customer);
-				if(session.getAttribute("carrello")!=null){
-					return "carrello";
+		HttpSession session = getSession();
+		if(((Customer)session.getAttribute("utenteCorrente"))!=null)
+			return "alreadyLogged";
+		else{
+			this.customer = customerFacade.getCustomer(email);
+			if(this.customer!=null)
+				if(this.customer.getPassword().equals(this.password)){
+					
+					session.setAttribute("utenteCorrente", this.customer);
+					if(this.customer.getAdmin()){
+						session.setAttribute("admin", new Boolean(true));
+					}
+					if(session.getAttribute("carrello")!=null){
+						return "carrello";
+					}
+					return "index";
 				}
-				return "index";
-			}
-		return "notLogged";
+			return "notLogged";
+		}
 	}
-	
+
 	public String logout(){
+		try{
+			Status.isLogged(false);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		HttpSession session = getSession();
 		session.invalidate();
 		return "index";
 
 	}
-	
+
 	public static HttpSession getSession(){
 		FacesContext context = FacesContext.getCurrentInstance();
 		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
 		HttpSession httpSession = request.getSession(false);
 		return httpSession;
 	}
-	
+
 	public String findCustomer(Long id) {
 		this.customer = customerFacade.getCustomer(id);
 		return "customer";

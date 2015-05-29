@@ -7,51 +7,47 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
-<title>SIW-JEE-ES2</title>
+<title>SiwPuoFare</title>
 </head>
 <body>
 	<f:view>
-		<h1>SIW-JEE-ES2</h1>
-		Customer: ${utenteCorrente}
+		<h1>Welcome!!!</h1>
 		<ul>
-				<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Registrazione</a></li>
+		<h:form>
+			<li><a href='<c:url value="/faces/newCustomer.jsp" />'>Sign up</a></li>
+			<c:if test="${utenteCorrente==null}">
+			<li><h:commandLink action="/faces/login.jsp" value="Sign in" /></li>
+			</c:if>
+
+			<c:if test="${admin!=null}">
 
 				<li><a href='<c:url value="/faces/newProduct.jsp" />'>Insert
 						a new product</a></li>
-			<li><h:form>
-					<h:commandLink action="#{productController.listProducts}"
-						value="List all Products" />
-				</h:form></li>
+				<li><h:commandLink action="#{customerController.listCustomers}"
+						value="List all customers" /></li>
+				<li><h:commandLink action="#{orderController.listOrdersToSend}"
+						value="List all orders to send" /></li>
+				<li><h:commandLink action="#{orderController.listAllOrders}"
+						value="List all orders" /></li>
+				<li><a href='<c:url value="/faces/getAddressByOrderId.jsp" />'>Get
+						customer by id</a></li>
+			</c:if>
 
-				<li><h:form>
-						<h:commandLink action="#{customerController.listCustomers}"
-							value="List all customers" />
-					</h:form></li>
-				<li><a href='<c:url value="/faces/getAddressByOrderId.jsp" />'>Trova customer dato un id</a></li>
-				<li><h:form>
-						<h:commandLink action="#{orderController.listOrdersToSend}"
-							value="List all orders to send" />
-					</h:form></li>
-				<li><h:form>
-						<h:commandLink action="#{orderController.listCustomerOrders}"
-							value="List my orders" />
-					</h:form></li>
-				<li><h:form>
-						<h:commandLink action="#{orderController.listAllOrders}"
-							value="List all orders" />
-					</h:form></li>
-			<c:if test="${utenteCorrente==null}">
-				<li><h:form>
-						<h:commandLink action="/faces/login.jsp" value="Login" />
-					</h:form></li>
-			</c:if>
+
+			<li><h:commandLink action="#{productController.listProducts}"
+					value="List all Products" /></li>
+
+
+
+
 			<c:if test="${utenteCorrente!=null}">
-				<li><h:form>
-						<h:commandLink action="#{customerController.logout}"
-							value="Logout" />
-					</h:form></li>
-			</c:if>
-			
+				<li><h:commandLink action="#{customerController.logout}"
+						value="Sign out" /></li>
+				<li><h:commandLink
+						action="#{orderController.listCustomerOrders}"
+						value="List my orders" /></li>
+			</c:if>		
+	</h:form>
 		</ul>
 	</f:view>
 </body>

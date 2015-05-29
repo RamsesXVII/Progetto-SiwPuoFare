@@ -14,7 +14,7 @@ public class Status {
 			throw new NotLoggedException();
 		}
 		if(admin){
-			if(!(c.getAdmin()))
+			if(!(c.getAdmin()).booleanValue())
 				throw new NotLoggedException();				
 		}
 	}

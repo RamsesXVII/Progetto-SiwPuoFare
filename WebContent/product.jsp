@@ -12,12 +12,12 @@
 	<div>Code: ${productController.product.code}</div>
 	<div>Price: ${productController.product.price}</div>
 	<div>Description: ${productController.product.description}</div>
-	<div>Quantit‡Disponibile: ${productController.product.qty}</div>
+	<div>Available quantity: ${productController.product.qty}</div>
 
 	<f:view>
 		<h:form>
 			<h:inputText value="#{orderController.quantitaCorrente}"/>
-			<h:commandLink action="#{orderController.addToOrder()}" value="ADD" />
+			<h:commandLink action="#{orderController.addToOrder()}" value="ADD to cart" />
 		</h:form>
 	</f:view>
 </body>

@@ -5,6 +5,8 @@ import java.util.List;
 
 import it.uniroma3.model.Product;
 import it.uniroma3.model.ProductFacade;
+import it.uniroma3.status.NotLoggedException;
+import it.uniroma3.status.Status;
 
 import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
@@ -30,6 +32,11 @@ public class ProductController {
 	private ProductFacade productFacade;
 	
 	public String createProduct() {
+		try{
+			Status.isLogged(true);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		this.product = productFacade.createProduct(name, code, price, description);
 		getSession().setAttribute("p1", this.product); 
 		return "product"; 

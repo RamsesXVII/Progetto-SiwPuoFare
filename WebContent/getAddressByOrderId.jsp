@@ -11,7 +11,7 @@
 		<h:form>
 			    <h:outputLabel value="Enter order ID: " /><br>
    				<h:inputText value="#{orderController.idCorrente}" />
-				<h:commandLink action="#{orderController.getCustomerDetails()}" value="cerca con Google!" />
+				<h:commandLink action="#{orderController.getCustomerDetails()}" value="search customer" />
 		</h:form>
 	</f:view>
 </body>

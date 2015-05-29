@@ -11,9 +11,6 @@
 <body>
 	<f:view>
 		<h:form>
-(String firstName, String lastName, String email, String password, String dateOfBirth,
-			String street, String city, String state, String zipcode, String country)
-			
     <div>
 				Name:
 				<h:inputText value="#{customerController.firstName}" required="true"
@@ -66,13 +63,13 @@
 				<h:message for="lastname" />
 			</div>
 			<div>
-				email:
+				Email:
 				<h:inputText value="#{customerController.email}" required="true"
 					requiredMessage="email is mandatory" id="email" />
 				<h:message for="email" />
 			</div>
 			<div>
-				password:
+				Password:
 				<h:inputText value="#{customerController.password}" required="true"
 					requiredMessage="password is mandatory" id="password" />
 				<h:message for="password" />

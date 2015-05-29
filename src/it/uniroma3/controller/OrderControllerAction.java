@@ -64,12 +64,22 @@ public class OrderControllerAction {
 	}
 
 	public String listCustomerOrders(OrderController o) {
+		try{
+			Status.isLogged(false);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		HttpSession session = getSession();
 		o.setOrders(o.getOrderFacade().getOrders(((Customer)session.getAttribute("utenteCorrente")).getId()));
 		return "orders";
 	}
 
 	public String getCustomerDetails(OrderController o) {
+		try{
+			Status.isLogged(true);
+		}catch(NotLoggedException e){
+			return "notLogged";
+		}
 		Order order=o.getOrderFacade().getOrder(o.getIdCorrente());
 		Customer c=null;
 		try{c=order.getCustomer();}catch(Exception e){c=null;}

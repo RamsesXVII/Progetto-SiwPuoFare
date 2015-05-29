@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>login</title>
+<title>Sign in</title>
 </head>
 <body>
 	<f:view>
@@ -20,12 +20,12 @@
 			</div>
 			<div>
 				password:
-				<h:inputText value="#{customerController.password}" required="true"
+				<h:inputSecret value="#{customerController.password}" required="true"
 					requiredMessage="password is mandatory" id="password" />
 				<h:message for="password" />
 			</div>
 			<div>
-				<h:commandButton value="login"
+				<h:commandButton value="Sign in"
 					action="#{customerController.login()}" />
 			</div>
 		</h:form>

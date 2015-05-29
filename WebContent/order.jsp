@@ -10,9 +10,9 @@
 		<h1>${orderController.order.id}</h1>
 		<h2>Details</h2>
 		<div>Id: ${orderController.order.stato}</div>
-		<div>DataSpedizione: ${orderController.order.dataSpedizione}</div>
-		<div>Cliente: ${orderController.order.customer.email}</div>
-		<div>Data di creazione: ${orderController.order.creationTime}</div>
+		<div>Shipment Date: ${orderController.order.dataSpedizione}</div>
+		<div>Customer: ${orderController.order.customer.email}</div>
+		<div>Creation date: ${orderController.order.creationTime}</div>
 		<h1>Order Lines</h1>
 		<h:form>
 			<table>
@@ -36,7 +36,7 @@
 			</table>
 			<!-- ci va un if per far sparire Spedisci -->
 			<td><h:commandLink action="#{orderController.sendOrder}"
-					value="Spedisci">
+					value="Confirm">
 					<f:param name="id" value="#{orderController.order.id}" />
 				</h:commandLink></td>
 		</h:form>

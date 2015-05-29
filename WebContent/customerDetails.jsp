@@ -4,9 +4,9 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Carrello</title>
+<title>Customer Details</title>
 </head>
 <body>
-	Cliente cercato: ${searchedCustomer.description()}
+	Searched customer: ${searchedCustomer.description()}
 </body>
 </html>
