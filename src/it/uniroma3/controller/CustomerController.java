@@ -234,6 +234,10 @@ public class CustomerController {
 	public void setCustomerFacade(CustomerFacade customerFacade) {
 		this.customerFacade = customerFacade;
 	}
+	
+	public String log(){
+		return "login";
+	}
 
 }
 

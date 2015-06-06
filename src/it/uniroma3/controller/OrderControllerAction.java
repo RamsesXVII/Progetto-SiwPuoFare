@@ -65,7 +65,8 @@ public class OrderControllerAction {
 		if(carrelloInSessione==null)
 			return "prodotti";
 		o.getOrderFacade().createOrder(carrelloInSessione,c);
-		o.setOrders(o.getOrderFacade().getOrders(c.getId())); //TODO è necessario farlo x cambiare pagina??'
+		o.setOrders(o.getOrderFacade().getOrders(c.getId())); 
+		session.removeAttribute("carrello");//TODO è necessario farlo x cambiare pagina??'
 		return "orders";								//ggestire i login nei metodi leggengp i casi d'uso
 		//gestire bottoni
 	}

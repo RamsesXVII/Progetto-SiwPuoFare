@@ -99,6 +99,8 @@
 
 
 						<c:if test="${utenteCorrente!=null}">
+						       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
+						
 
 							<li><h:form>
 									<h:commandLink styleClass="btn btn-inverse navbar-btn"
@@ -125,17 +127,17 @@
 					<table>
 						<tr>
 							<h1>${productController.product.name}</h1>
-							<h2>Details</h2>
-							<div>Code: ${productController.product.code}</div>
-							<div>Price: ${productController.product.price}</div>
-							<div>Description: ${productController.product.description}</div>
-							<div>Available quantity: ${productController.product.qty}</div>
+							<h2>Dettagli</h2>
+							<div>Codice: ${productController.product.code}</div>
+							<div>Prezzo: ${productController.product.price}</div>
+							<div>Descrizione: ${productController.product.description}</div>
+							<div>Quantit&aacute disponibile: ${productController.product.qty}</div>
 
 							<c:if test="${inserimentoIncorso==null}">
 								<h:form>
 									<div class="form-group">
 										<label class="sr-only" for="quantity">Quantity</label><font
-											color="white">Quantity</font> <br>
+											color="white">Quantit&aacute desiderata:</font> <br>
 										<br>
 										<div class="col-sm-6 col-md-4 col-md-offset-4">
 											<img class="profile-img"
@@ -160,8 +162,7 @@
 								<!-- inserimento in corso inserito in request, altrimenti una volta inserito un prodotto viene richiesto se aggiungerlo all'ordine -->
 
 								<h:form>
-									<a class="btn" href='<c:url value="/faces/newProduct.jsp" />'>Insert
-										a new product</a>
+									<a class="btn" href='<c:url value="/faces/newProduct.jsp" />'>Inserisci un nuovo Prodotto</a>
 								</h:form>
 							</c:if>
 					</table>

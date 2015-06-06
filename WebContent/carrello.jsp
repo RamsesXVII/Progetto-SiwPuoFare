@@ -68,7 +68,7 @@
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listAllOrders}" value="Ordini" /></h:form></li>
 				</c:if>
        				
-       			<c:if test="${utenteCorrente!=null}">
+       			<c:if test="${utenteCorrente!=null}">       			
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listCustomerOrders}" value="I miei Ordini" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{customerController.logout}" value="Esci" /></h:form></li>
 				</c:if>		
@@ -91,7 +91,7 @@
 
 			<div class="col-md-5 col-sm-12">
 				<div class="bigcart"></div>
-				<h1>Il tuo carrello</h1>
+				<h1>Il tuo carrello <c:if test="${carrello==null}"> &eacute vuoto</c:if></h1>
 				<p>
 					Questo &eacute il tuo carrello. A destra c' &eacute l'elenco degli
 					oggetti che hai inserito nel carrello. Sfortunatamente questa versione
