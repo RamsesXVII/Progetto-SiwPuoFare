@@ -141,7 +141,7 @@ public class OrderController {
 	
 	public String sendOrder(){
 		this.order= orderFacade.sendOrder(id);
-		this.orders = orderFacade.getAllOrders();
+		this.orders = orderFacade.getOrdersToSend();
 		return "orders";
 	}
 	public String listOrderLines(){

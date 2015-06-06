@@ -39,6 +39,7 @@ public class ProductController {
 		}
 		this.product = productFacade.createProduct(name, code, price, description);
 		getSession().setAttribute("p1", this.product); 
+		getRequest().setAttribute("inserimentoIncorso", new Boolean(true));
 		return "product"; 
 	}
 	
@@ -59,7 +60,11 @@ public class ProductController {
 		HttpSession httpSession = request.getSession(false);
 		return httpSession;
 	}
-	
+	public static HttpServletRequest getRequest(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		return request;
+	}
 	public String findProduct(Long id) {
 		this.product = productFacade.getProduct(id);
 		return "product";

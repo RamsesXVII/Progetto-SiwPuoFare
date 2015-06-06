@@ -26,16 +26,23 @@ public class OrderControllerAction {
 				carrelloInSessione.put(p,quantitaCorrente);
 			}
 			session.setAttribute("carrello", carrelloInSessione);
+			
+			Float totale=(Float)session.getAttribute("totaleVendita");
+			totale += new Float(p.getPrice()*quantitaCorrente);
+			session.setAttribute("totaleVendita", totale);
+			
 		}else{
 			Map<Product, Integer> carrello=new HashMap<Product, Integer>();
 			carrello.put(p, quantitaCorrente);
 			session.setAttribute("carrello", carrello);
+			session.setAttribute("totaleVendita", new Float(quantitaCorrente*p.getPrice()));
 		}
 		try{
 			Status.isLogged(false);
 		}catch(NotLoggedException e){
 			return "notLogged";
 		}
+	
 		return "carrello";
 	}
 	

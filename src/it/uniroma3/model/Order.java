@@ -104,6 +104,14 @@ public class Order {
 		this.dataSpedizione = dataSpedizione;
 	}
 
+	public Float getTotal() {
+		Float totale=new Float(0);
+		for(OrderLine o: this.orderLines)
+			totale +=new Float(o.getUnitPrice()*o.getQuantity());
+		return totale;
+		
+	}
+
 
 	
 }
