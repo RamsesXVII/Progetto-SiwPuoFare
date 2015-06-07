@@ -2,11 +2,14 @@ package it.uniroma3.model;
 
 
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import java.util.List;
 
@@ -27,6 +30,8 @@ public class CustomerFacade {
 
 	public Customer getCustomer(Long id) {
 		Customer customer= em.find(Customer.class, id);
+		HttpSession session=getSession();
+		session.setAttribute("searchedCustomer", customer);
 		return customer;
 	}
 
@@ -61,65 +66,10 @@ public class CustomerFacade {
 		deleteCustomer(c);
 	}
 
-
-	/*
-
-
-	    private EntityManager entityManager;
-	    private EntityManagerFactory emf;
-
-		public ProductFacade()  {
-			emf = Persistence.createEntityManagerFactory("product-unit");
-			entityManager = emf.createEntityManager();
-		}
-
-		public Product createProduct(String name, String code, Float price, String description) {
-			Product product = new Product(name, price, description, code);
-			EntityTransaction tx = entityManager.getTransaction();
-			tx.begin();
-			entityManager.persist(product);
-			tx.commit();
-			entityManager.close();
-			emf.close();
-			return product;
-		}
-
-		public Product getProduct(Long id) {
-		    Product product = entityManager.find(Product.class, id);
-			entityManager.close();
-			emf.close();
-			return product;
-		}
-
-		public List<Product> getAllProducts() {
-	        CriteriaQuery<Product> cq = entityManager.getCriteriaBuilder().createQuery(Product.class);
-	        cq.select(cq.from(Product.class));
-	        List<Product> products = entityManager.createQuery(cq).getResultList();
-			entityManager.close();
-			emf.close();
-			return products;
-		}
-
-		public void updateProduct(Product product) {
-			EntityTransaction tx = entityManager.getTransaction();
-			tx.begin();
-	        entityManager.merge(product);
-			tx.commit();
-			entityManager.close();
-			emf.close();	}
-
-	    private void deleteProduct(Product product) {
-	        entityManager.remove(product);
-	    }
-
-		public void deleteProduct(Long id) {
-			EntityTransaction tx = entityManager.getTransaction();
-			tx.begin();
-	        Product product = entityManager.find(Product.class, id);
-	        deleteProduct(product);
-			tx.commit();
-			entityManager.close();
-			emf.close();	
-		}
-	 */
+	public static HttpSession getSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		return httpSession;
+	}
 }

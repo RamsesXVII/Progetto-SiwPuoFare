@@ -4,7 +4,7 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
 
@@ -14,9 +14,12 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Creative - Start Bootstrap Theme</title>
+<title>Cheap And Weak</title>
 
+<!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+
+<!-- Custom Fonts -->
 <link
 	href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
 	rel='stylesheet' type='text/css'>
@@ -25,13 +28,18 @@
 	rel='stylesheet' type='text/css'>
 <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css"
 	type="text/css">
+
+<!-- Plugin CSS -->
 <link rel="stylesheet" href="css/animate.min.css" type="text/css">
+
+<!-- Custom CSS -->
 <link rel="stylesheet" href="css/creative.css" type="text/css">
 
 </head>
 
 <body id="page-top">
 	<f:view>
+
 		<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -42,7 +50,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="index.html">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -65,8 +73,7 @@
 				</c:if>
        				
        			<c:if test="${utenteCorrente!=null}">
-       			       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
-       			
+       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listCustomerOrders}" value="I miei Ordini" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{customerController.logout}" value="Esci" /></h:form></li>
 				</c:if>		
@@ -79,18 +86,26 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<header>
+<header>
 			<div class="header-content">
 				<div class="header-content-inner">
-																											<br><br>
-					<h1>Customer Description</h1>
-					<hr>
-					<p><h1>${searchedCustomer.description()}</h1></p>
-				</div>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 text-center">
+						<h2 class="section-heading">Ecco i dettagli del cliente:</h2>
+						<hr class="primary">
+						<c:if test="${searchedCustomer!=null}">
+						<p>Il cliente si chiama <b>${searchedCustomer.firstName} ${searchedCustomer.lastName} </b>. Il suo indirizzo email &eacute <b>${searchedCustomer.email}</b> e risulta registrato dal <b>${searchedCustomer.registrationDate}</b>.
+						 <br> Il suo indirizzo &eacute <b>${searchedCustomer.address.street},${searchedCustomer.address.city},${searchedCustomer.address.state},${searchedCustomer.address.zipcode},${searchedCustomer.address.zipcode}.</b>  </p>
+						</c:if>
+						<c:if test="${searchedCustomer==null}">
+						Non &eacute stato trovato nessun cliente associato all'ordine inserito.
+						</c:if>
+					</div>
+					      <a href='<c:url value="/faces/getAddressByOrderId.jsp" />' class="btn btn-primary btn-xl page-scroll" >Cerca un altro cliente</a>
+									</div>
 			</div>
-		</header>
-
-
+			</div>
+			</header>
 
 		<!-- jQuery -->
 		<script src="js/jquery.js"></script>

@@ -150,7 +150,7 @@
 											<td class="center">${ora.stato}</td>
                                             <td>${ora.customer.email}</td>
                                             <td>${ora.creationTime}</td>
-                                            <td class="center">${ora.dataSpedizione}</td>
+                                            <td class="center"><c:if test="${ora.stato=='spedito'}">${ora.dataSpedizione}</c:if></td>
                                         </tr>
                                        </c:forEach> 
                                     </tbody>

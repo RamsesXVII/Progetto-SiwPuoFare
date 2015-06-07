@@ -4,7 +4,7 @@
 <%@ taglib prefix="h" uri="http://java.sun.com/jsf/html"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 
 <head>
 
@@ -14,7 +14,7 @@
 <meta name="description" content="">
 <meta name="author" content="">
 
-<title>Creative - Start Bootstrap Theme</title>
+<title>Cheap And Weak</title>
 
 <!-- Bootstrap Core CSS -->
 <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -39,6 +39,7 @@
 
 <body id="page-top">
 	<f:view>
+
 		<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
@@ -49,7 +50,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="index.html">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,8 +73,7 @@
 				</c:if>
        				
        			<c:if test="${utenteCorrente!=null}">
-       			       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
-       			
+       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listCustomerOrders}" value="I miei Ordini" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{customerController.logout}" value="Esci" /></h:form></li>
 				</c:if>		
@@ -86,20 +86,32 @@
 			<!-- /.container-fluid -->
 		</nav>
 
-		<header>
+<header>
 			<div class="header-content">
 				<div class="header-content-inner">
-					<h1>Welcome on CheapAndWeak</h1>
-					<hr>
-
-					<p><h1>${customerController.customer.firstName}</h1>
-						<h1>${customerController.customer.lastName}</h1></p>
-					<a href="index.html" class="btn btn-primary btn-xl page-scroll">Try Cheap&Weak Now</a>
+				<div class="row">
+					<div class="col-lg-8 col-lg-offset-2 text-center">
+						<h2 class="section-heading">Benvenuto su Cheap&Weak, ${customerController.customer.firstName}</h2>
+						<hr class="primary">
+						<p>Per qualunque tipo di necessit&aacute non esitare a contattare il nostro servizio clienti</p>
+					</div>
+					<div class="col-lg-4 col-lg-offset-2 text-center">
+						<i class="fa fa-phone fa-3x wow bounceIn"></i>
+						<p>123-456-6789</p>
+					</div>
+					<div class="col-lg-4 text-center">
+						<i class="fa fa-envelope-o fa-3x wow bounceIn"
+							data-wow-delay=".1s"></i>
+						<p>
+						
+							<a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+						</p>
+					</div>
+						<a href='<c:url value="/faces/login.jsp" />' class="btn btn-primary btn-xl page-scroll" >Prova subito Cheap&Weak</a>					
 				</div>
 			</div>
-		</header>
-
-
+			</div>
+			</header>
 
 		<!-- jQuery -->
 		<script src="js/jquery.js"></script>

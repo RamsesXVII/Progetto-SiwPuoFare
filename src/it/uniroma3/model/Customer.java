@@ -131,15 +131,7 @@ public class Customer {
 	        sb.append("}\n");
 	        return sb.toString();
 	}
-	public String description(){
-		   final StringBuilder sb = new StringBuilder();
-	        sb.append("<br>nome: ").append(firstName); 
-	        sb.append("<br>cognome: ").append(lastName); 
-	        sb.append("<br>email: ").append(email); 
-	        if(address!=null)
-	        sb.append(address.description());
-	        return sb.toString();
-	}
+
 
 	public Date getRegistrationDate() {
 		return registrationDate;

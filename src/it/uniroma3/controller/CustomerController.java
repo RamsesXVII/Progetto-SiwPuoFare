@@ -58,7 +58,7 @@ public class CustomerController {
 			return "notLogged";
 		}
 		this.customer = customerFacade.getCustomer(id);
-		return "customer";
+		return "customerDetails";
 	}
 
 	public String login() {
@@ -103,7 +103,7 @@ public class CustomerController {
 	}
 
 	public String findCustomer(Long id) {
-		this.customer = customerFacade.getCustomer(id);
+		customerFacade.getCustomer(id);
 		return "customer";
 	}
 
