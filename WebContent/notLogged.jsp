@@ -40,7 +40,7 @@
 <body id="page-top">
 	<f:view>
 
-			<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
+					<nav id="mainNav" class="navbar navbar-inverse navbar-fixed-top">
 			<div class="container-fluid">
 				<!-- Brand and toggle get grouped for better mobile display -->
 				<div class="navbar-header">
@@ -50,7 +50,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="index.html">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -64,20 +64,28 @@
                     <li><a class="page-scroll" href='<c:url value="/faces/login.jsp" />'>Log in</a></li>	
                    	</c:if>
                    	
+                 <c:if test="${utenteCorrente!=null}">
+       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
+				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listCustomerOrders}" value="I miei Ordini" /></h:form></li>
+				</c:if>		
+       	
        			<c:if test="${admin!=null}">
-       			<li><a class="page-scroll" href='<c:url value="/faces/getAddressByOrderId.jsp" />'>Cerca cliente</a></li>
-				<li><a class="page-scroll" href='<c:url value="/faces/newProduct.jsp" />'>Inserisci prodotto</a></li>
+
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{customerController.listCustomers}" value="Clienti" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listOrdersToSend}" value="Odini da spedire" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listAllOrders}" value="Ordini" /></h:form></li>
+				       			<li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i>Admin tools <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                          <li><a class="fa fa-search-plus" href='<c:url value="/faces/getAddressByOrderId.jsp" />'>Cerca cliente</a></li>
+                       	 <li><a class="fa fa-plus" href='<c:url value="/faces/newProduct.jsp" />'>Inserisci prodotto</a></li>                             
+                    </ul>
+                    </li>
 				</c:if>
+       				                 <c:if test="${utenteCorrente!=null}">
        				
-       			<c:if test="${utenteCorrente!=null}">
-       			<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.carrello}" value="il mio carrello" /></h:form></li>
-				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{orderController.listCustomerOrders}" value="I miei Ordini" /></h:form></li>
 				<li><h:form><h:commandLink styleClass="btn btn-inverse navbar-btn" action="#{customerController.logout}" value="Esci" /></h:form></li>
-				</c:if>		
-       
+</c:if>
 					</ul> 
 					
 				</div>
