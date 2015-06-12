@@ -54,7 +54,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="index.jsp">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -103,14 +103,7 @@
 
         <div class="row">
 
-            <div class="col-md-3">
-                <p class="lead">Shop Name</p>
-                <div class="list-group">
-                    <a href="#" class="list-group-item">Abbigliamento</a>
-                    <a href="#" class="list-group-item">Sport</a>
-                    <a href="#" class="list-group-item">Musica</a>
-                </div>
-            </div>
+            
 
             <div class="col-md-9">
 
@@ -125,7 +118,7 @@
                             </ol>
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <img class="slide-image" src="http://www.thinkdonna.it/foto/blog/shape-4.jpg" alt="">
+                                    <img class="slide-image" src="http://www.giornalettismo.com/wp-content/uploads/2015/05/gomma-da-cancellare.jpg" alt="">
                                 </div>
                                 <div class="item">
                                     <img class="slide-image" src="http://www.cirentennis.net/slider_data/images/Rackets2.jpg" alt="">
@@ -150,7 +143,6 @@
 					<c:forEach var="product" items="#{productController.products}">
                     <div class="col-sm-4 col-lg-4 col-md-4">
                         <div class="thumbnail">
-                            <img src="http://placehold.it/320x150" alt="">
                             <div class="caption">
                                 <h4 class="pull-right">Price: ${product.price}</h4>
                                 <h4><h:form><h:commandLink action="#{productController.findProduct}" value="#{product.name}">
@@ -159,27 +151,9 @@
                                 </h4>
                                 <p>Available quantity: ${product.qty}</p>
                             </div>
-                            <div class="ratings">
-                                <p class="pull-right">15 reviews</p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                </p>
-                            </div>
-                        </div>
+                              </div>
                     </div>
                     </c:forEach>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <h4><a href="#">Vuoi pubblicizzare un tuo prodotto?</a>
-                        </h4>
-                        <p>Sei interessato a questo spazio pubblicitario?<a target="_blank" href="https://it.wikipedia.org/wiki/Pubblicit%C3%A0">Clicca qui</a> per ulteriori informazioni</p>
-                        <a class="btn btn-primary" target="_blank" href="http://maxoffsky.com/code-blog/laravel-shop-tutorial-1-building-a-review-system/">View Tutorial</a>
-                    </div>
-
                 </div>
 
             </div>
@@ -197,7 +171,7 @@
         <footer>
             <div class="row">
                 <div class="col-lg-12">
-                    <p>Copyright &copy; Your Website 2014</p>
+                    <p>Copyright &copy; Siw Puo Fare 2015</p>
                 </div>
             </div>
         </footer>

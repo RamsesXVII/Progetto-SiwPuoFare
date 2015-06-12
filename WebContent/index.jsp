@@ -50,7 +50,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="index.jsp">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -172,7 +172,7 @@
 			<div class="container-fluid">
 				<div class="row no-gutter">
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a  class="portfolio-box"> <img
 							src="img/portfolio/1.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -183,7 +183,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a  class="portfolio-box"> <img
 							src="img/portfolio/2.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -194,7 +194,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a  class="portfolio-box"> <img
 							src="img/portfolio/3.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -205,7 +205,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a  class="portfolio-box"> <img
 							src="img/portfolio/4.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -216,7 +216,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a class="portfolio-box"> <img
 							src="img/portfolio/5.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -227,7 +227,7 @@
 						</a>
 					</div>
 					<div class="col-lg-4 col-sm-6">
-						<a href="#" class="portfolio-box"> <img
+						<a  class="portfolio-box"> <img
 							src="img/portfolio/6.jpg" class="img-responsive" alt="">
 							<div class="portfolio-box-caption">
 								<div class="portfolio-box-caption-content">
@@ -262,13 +262,13 @@
 					</div>
 					<div class="col-lg-4 col-lg-offset-2 text-center">
 						<i class="fa fa-phone fa-3x wow bounceIn"></i>
-						<p>123-456-6789</p>
+						<p>346 5800052</p>
 					</div>
 					<div class="col-lg-4 text-center">
 						<i class="fa fa-envelope-o fa-3x wow bounceIn"
 							data-wow-delay=".1s"></i>
 						<p>
-							<a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+							<a href="mailto:your-email@your-domain.com">siwpuofare@uniroma3.it</a>
 						</p>
 					</div>
 				</div>

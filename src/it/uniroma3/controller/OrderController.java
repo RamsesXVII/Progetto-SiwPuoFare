@@ -191,6 +191,22 @@ public class OrderController {
 	public void setIdCorrente(Long idCorrente) {
 		this.idCorrente = idCorrente;
 	}
+	
+	public static HttpSession getSession(){
+		FacesContext context = FacesContext.getCurrentInstance();
+		HttpServletRequest request = (HttpServletRequest)context.getExternalContext().getRequest();
+		HttpSession httpSession = request.getSession(false);
+		return httpSession;
+	}
+
+	public String removeProdotto(Product p){
+		HttpSession session = getSession();
+		Map<Product, Integer> c2 = (Map<Product, Integer>) session.getAttribute("carrello");
+		c2.remove(p);
+		session.removeAttribute("carrello");
+		session.setAttribute("carrello", c2);
+		return "carrello";
+	}
 }
 
 

@@ -75,7 +75,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="index.jsp">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->

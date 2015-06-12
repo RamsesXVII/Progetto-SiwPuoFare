@@ -4,7 +4,10 @@
 <%@ page language="java" contentType="text/html; charset=US-ASCII"
 	pageEncoding="US-ASCII"%>
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
 	<head>
 		<title>Il tuo carrello</title>
 		<meta charset="UTF-8">
@@ -46,7 +49,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="index.jsp">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -120,8 +123,7 @@
 						<li class="row">
 						<span class="quantity">${carrello.get(p)}</span>
 						<span class="itemName">${p.name}</span>
-						<span class="popbtn"><a class="arrow"></a></span>
-						<span class="price">${p.price}</span>
+						<span class="price">${p.price} 	</span>
 					</li>
 						</c:forEach>
 

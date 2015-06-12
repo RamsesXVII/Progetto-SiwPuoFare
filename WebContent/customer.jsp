@@ -105,14 +105,14 @@
 					</div>
 					<div class="col-lg-4 col-lg-offset-2 text-center">
 						<i class="fa fa-phone fa-3x wow bounceIn"></i>
-						<p>123-456-6789</p>
+						<p>346 5800052</p>
 					</div>
 					<div class="col-lg-4 text-center">
 						<i class="fa fa-envelope-o fa-3x wow bounceIn"
 							data-wow-delay=".1s"></i>
 						<p>
 						
-							<a href="mailto:your-email@your-domain.com">feedback@startbootstrap.com</a>
+							<a href="mailto:your-email@your-domain.com">siwpuofare@uniroma3.it</a>
 						</p>
 					</div>
 						<a href='<c:url value="/faces/login.jsp" />' class="btn btn-primary btn-xl page-scroll" >Prova subito Cheap&Weak</a>					

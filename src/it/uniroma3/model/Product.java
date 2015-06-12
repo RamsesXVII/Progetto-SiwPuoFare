@@ -98,4 +98,4 @@ import javax.persistence.Column;
 		this.qty = qty;
 	}
 
-	}
+}

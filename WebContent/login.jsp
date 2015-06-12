@@ -43,7 +43,7 @@
 							class="icon-bar"></span> <span class="icon-bar"></span> <span
 							class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand page-scroll" href="#page-top">Cheap And Weak</a>
+					<a class="navbar-brand page-scroll" href="index.jsp">Cheap And Weak</a>
 				</div>
 
 				<!-- Collect the nav links, forms, and other content for toggling -->
@@ -114,11 +114,8 @@
 
 								<h:commandButton value="Login"
 									action="#{customerController.login()}"
-									styleClass="btn btn-lg btn-primary btn-block" />
-							
-							<label class="checkbox pull-left"> <input type="checkbox"
-								value="remember-me"> Remember me 
-							</label> <a href="#" class="pull-right need-help">Need help? </a><span
+									styleClass="btn btn-lg btn-primary btn-block" />							
+							<span
 								class="clearfix"></span>
 								</h:form>
 						</form>
