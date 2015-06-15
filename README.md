@@ -45,7 +45,7 @@ $ git clone [https://github.com/RamsesXVII/Progetto-SiwPuoFare.git]
 
 Hanno contribuito allo sviluppo gli studenti:
 - Davinder Kumar
-- Matteo Pallota
+- Matteo Pallotta
 - Mattia Iodice
 
 
